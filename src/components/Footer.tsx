@@ -138,7 +138,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button 
-                  onClick={() => handleLinkClick('destaque-produto', '/produtos/power-nature')} 
+                  onClick={() => handleLinkClick('destaque-produto', '/')} 
                   className="hover:text-white transition-colors text-left cursor-pointer text-[#e02b5e] font-medium"
                 >
                   Power Nature (300g)

@@ -1,25 +1,15 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Leaf, Shield, CheckCircle2, Clock } from 'lucide-react';
+import { ArrowRight, Sparkles, Leaf, Shield, CheckCircle2, Clock, ShoppingBag } from 'lucide-react';
 import { productsList } from '../data/products';
 import { ProductItem } from '../types';
-import { trackEvent } from '../utils/analytics';
 
 interface ProductCatalogProps {
-  onSelectProduct?: (product: ProductItem) => void;
   onQuickBuy?: (product: ProductItem) => void;
 }
 
 export const ProductCatalog: React.FC<ProductCatalogProps> = ({ 
-  onSelectProduct,
   onQuickBuy 
 }) => {
-  const handleProductClick = (product: ProductItem) => {
-    trackEvent('view_product_catalog', { product_id: product.id });
-    if (onSelectProduct) {
-      onSelectProduct(product);
-    }
-  };
-
   return (
     <section 
       id="produtos" 
@@ -58,44 +48,40 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   isActive 
                     ? 'lg:col-span-12 xl:col-span-12 bg-gradient-to-br from-[#16060d] via-[#0e0407] to-[#0a0305] border-[#801438]/70 shadow-[0_15px_40px_rgba(0,0,0,0.6)]' 
                     : 'lg:col-span-6 bg-[#0e0407]/60 border-[#ffffff10] opacity-90'
-                } rounded-3xl border p-6 sm:p-8 lg:p-10 transition-all duration-300 relative group flex flex-col justify-between`}
+                } rounded-3xl border p-7 sm:p-10 transition-all duration-300 relative flex flex-col justify-between`}
               >
-                {/* Active Featured Product Banner (Power Nature) */}
+                {/* Active Flagship Product (Power Nature) */}
                 {isActive ? (
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
-                    {/* Visual Media Column */}
+                    {/* Visual Container */}
                     <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
-                      <div className="absolute inset-0 bg-radial from-[#c02652]/20 via-transparent to-transparent rounded-full blur-2xl pointer-events-none" />
-                      
                       <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-square flex items-center justify-center">
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
                           loading="lazy"
                         />
                       </div>
-
-                      {/* Badge */}
-                      <span className="mt-4 px-3.5 py-1 rounded-full bg-[#801438]/40 border border-[#801438] text-[10px] sm:text-xs uppercase tracking-widest text-[#ff6b95] font-semibold">
-                        {product.badge}
-                      </span>
+                      <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#801438]/20 border border-[#801438]/40 text-[10px] uppercase font-mono tracking-widest text-[#ff3e78]">
+                        <Shield className="w-3 h-3" />
+                        <span>Fórmula Exclusiva Raiz Vital</span>
+                      </div>
                     </div>
 
-                    {/* Information & Action Column */}
+                    {/* Content */}
                     <div className="lg:col-span-7 flex flex-col items-start text-left">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#c02652] font-semibold">
-                          {product.category}
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="px-3 py-0.5 rounded-full bg-[#ff3e78]/20 text-[#ff6b95] text-[10px] font-mono uppercase tracking-widest font-bold">
+                          {product.badge}
                         </span>
-                        <span className="text-white/20">•</span>
-                        <span className="text-[10px] sm:text-xs text-[#a39c9f]">
-                          {product.weight}
+                        <span className="text-[11px] font-mono text-[#8e8588]">
+                          {product.category}
                         </span>
                       </div>
 
-                      <h3 className="font-serif-hero text-2xl sm:text-3xl lg:text-4xl text-white font-normal mb-1">
+                      <h3 className="font-serif-hero text-2xl sm:text-3xl text-white font-normal mb-1">
                         {product.name}
                       </h3>
 
@@ -134,20 +120,14 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                       {/* CTAs */}
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full">
                         <button
-                          onClick={() => handleProductClick(product)}
-                          className="px-6 py-3.5 rounded-full bg-[#801438] hover:bg-[#991944] text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_4px_20px_rgba(128,20,56,0.4)] flex items-center justify-center gap-2 cursor-pointer group/btn"
-                        >
-                          <span>VER DETALHES DO PRODUTO</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                        </button>
-
-                        <button
                           onClick={() => {
                             if (onQuickBuy) onQuickBuy(product);
                           }}
-                          className="px-6 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center text-center cursor-pointer"
+                          className="px-8 py-4 rounded-full bg-[#801438] hover:bg-[#991944] text-white text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_6px_25px_rgba(128,20,56,0.5)] flex items-center justify-center gap-2 cursor-pointer group/btn"
                         >
-                          Comprar Agora
+                          <ShoppingBag className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                          <span>COMPRAR AGORA</span>
+                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </button>
                       </div>
 
@@ -163,34 +143,30 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                           {product.category}
                         </span>
                         <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[9px] uppercase tracking-wider text-[#a39c9f] flex items-center gap-1">
-                          <Clock className="w-2.5 h-2.5 text-[#c02652]" />
+                          <Clock className="w-3 h-3 text-[#ff3e78]" />
                           {product.badge}
                         </span>
                       </div>
 
-                      <div className="w-full h-40 rounded-2xl overflow-hidden mb-6 relative">
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-full object-cover grayscale opacity-40 group-hover:scale-105 transition-transform duration-500" 
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0407] via-transparent to-transparent" />
-                      </div>
-
-                      <h4 className="font-serif-hero text-xl text-white mb-1">
+                      <h3 className="font-serif-hero text-xl sm:text-2xl text-white font-normal mb-1">
                         {product.name}
-                      </h4>
-                      <p className="text-xs text-[#c02652] italic font-serif-hero mb-3">
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-[#ff6b95] italic font-serif-hero mb-3">
                         {product.headline}
                       </p>
-                      <p className="text-xs text-[#a39c9f] font-light leading-relaxed mb-4">
+
+                      <p className="text-xs text-[#a39c9f] leading-relaxed mb-5 font-light">
                         {product.shortDescription}
                       </p>
 
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {product.keyIngredients.map((ing, i) => (
-                          <span key={i} className="px-2.5 py-0.5 rounded-md bg-white/5 text-[10px] text-[#a39c9f]">
+                      {/* Key ingredients pills */}
+                      <div className="flex flex-wrap gap-1.5 mb-6">
+                        {product.keyIngredients.map((ing, idx) => (
+                          <span 
+                            key={idx}
+                            className="px-2.5 py-0.5 rounded-md bg-white/5 text-[10px] text-[#cfc7cb] border border-white/5"
+                          >
                             {ing}
                           </span>
                         ))}
@@ -198,11 +174,16 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     </div>
 
                     <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                      <span className="text-[11px] text-[#8e8588] italic">Em fase de pesquisa e formulação botânica</span>
-                      <span className="text-[11px] text-[#c02652] font-semibold">Em breve</span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-[#8e8588]">
+                        {product.mainBenefit}
+                      </span>
+                      <span className="text-[11px] font-medium text-[#c02652] tracking-wider">
+                        Em desenvolvimento
+                      </span>
                     </div>
                   </div>
                 )}
+
               </div>
             );
           })}

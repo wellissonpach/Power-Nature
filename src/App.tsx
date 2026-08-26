@@ -23,42 +23,22 @@ import { Footer } from './components/Footer';
 import { NutritionModal } from './components/NutritionModal';
 import { CheckoutModal } from './components/CheckoutModal';
 import { LegalModals } from './components/LegalModals';
-import { ProductPage } from './components/ProductPage';
 import { productConfig } from './config/product';
-import { productsList, getProductBySlug } from './data/products';
-import { ProductPack, ProductItem } from './types';
+import { ProductPack } from './types';
 import { trackEvent } from './utils/analytics';
 
 export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return window.location.pathname || '/';
-    }
-    return '/';
-  });
-
+  const [currentRoute, setCurrentRoute] = useState<string>('/');
   const [isNutritionOpen, setIsNutritionOpen] = useState(false);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
   const [selectedPackForCheckout, setSelectedPackForCheckout] = useState<ProductPack>(productConfig.packs[1]);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
 
-  // Sync route with browser history (back/forward buttons)
-  useEffect(() => {
-    const handlePopState = () => {
-      setCurrentRoute(window.location.pathname || '/');
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
   // Track page view & scroll depth
   useEffect(() => {
-    const pageTitle = currentRoute.includes('power-nature')
-      ? 'Power Nature Pré-Treino | Raiz Vital'
-      : 'Raiz Vital | Produtos Naturais e Nutrição Funcional';
-      
+    const pageTitle = 'Raiz Vital | Produtos Naturais e Nutrição Funcional';
     document.title = pageTitle;
-    trackEvent('page_view', { page_title: pageTitle, path: currentRoute });
+    trackEvent('page_view', { page_title: pageTitle, path: '/' });
 
     let fired50 = false;
     let fired90 = false;
@@ -87,20 +67,10 @@ export default function App() {
 
     window.addEventListener('scroll', handleScrollTracking, { passive: true });
     return () => window.removeEventListener('scroll', handleScrollTracking);
-  }, [currentRoute]);
+  }, []);
 
   const navigateTo = (route: string) => {
     setCurrentRoute(route);
-    if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', route);
-    }
-  };
-
-  const scrollToOffer = () => {
-    const offerElement = document.getElementById('produto');
-    if (offerElement) {
-      offerElement.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   const handleDirectBuy = () => {
@@ -108,7 +78,8 @@ export default function App() {
     if (productConfig.checkoutUrl && productConfig.checkoutUrl !== '#') {
       window.open(productConfig.checkoutUrl, '_blank', 'noopener,noreferrer');
     } else {
-      scrollToOffer();
+      const el = document.getElementById('destaque-produto');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -123,17 +94,6 @@ export default function App() {
     }
   };
 
-  const handleSelectProduct = (product: ProductItem) => {
-    if (product.status === 'active') {
-      navigateTo(product.href);
-    }
-  };
-
-  // Determine if we are viewing a dedicated product page
-  const isProductRoute = currentRoute.startsWith('/produtos/');
-  const productSlug = isProductRoute ? currentRoute.replace('/produtos/', '') : '';
-  const currentProduct = productSlug ? getProductBySlug(productSlug) : undefined;
-
   return (
     <div className="min-h-screen bg-[#0a0505] text-[#f5f5f0] relative overflow-x-hidden font-sans selection:bg-[#8b1a3e] selection:text-white">
       
@@ -142,85 +102,67 @@ export default function App() {
         onNavigate={navigateTo}
         currentRoute={currentRoute}
         onExploreProducts={() => {
-          if (currentRoute !== '/') {
-            navigateTo('/');
-            setTimeout(() => {
-              const el = document.getElementById('produtos');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-          } else {
-            const el = document.getElementById('produtos');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }
+          const el = document.getElementById('produtos');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
       />
 
-      {/* Route Switcher: Dedicated Product Page vs Main Brand Portal */}
-      {isProductRoute && currentProduct ? (
-        <main>
-          <ProductPage 
-            product={currentProduct}
-            onBackToHome={() => navigateTo('/')}
-            onBuyPack={handleDirectBuy}
-            onOpenNutrition={() => setIsNutritionOpen(true)}
-          />
-        </main>
-      ) : (
-        <main>
-          {/* 2. Hero Section (Preservada visualmente como destaque do Power Nature) */}
-          <Hero 
-            onBuyClick={handleHeroBuyClick} 
-            onExploreClick={handleExploreClick} 
-          />
+      <main>
+        {/* 2. Hero Section (Preservada visualmente como destaque do Power Nature) */}
+        <Hero 
+          onBuyClick={handleHeroBuyClick} 
+          onExploreClick={handleExploreClick} 
+        />
 
-          {/* 3. Nova Seção: Nossos Produtos (Catálogo de portfólio escalável) */}
-          <ProductCatalog 
-            onSelectProduct={handleSelectProduct}
-            onQuickBuy={() => scrollToOffer()}
-          />
+        {/* 3. Nova Seção: Nossos Produtos (Catálogo de portfólio escalável) */}
+        <ProductCatalog 
+          onQuickBuy={() => handleDirectBuy()}
+        />
 
-          {/* 4. Nova Seção: Benefícios dos Produtos Raiz Vital (Respostas para dores e desejos do público) */}
-          <VitalBenefits 
-            onExploreProduct={() => scrollToOffer()}
-          />
+        {/* 4. Nova Seção: Benefícios dos Produtos Raiz Vital (Respostas para dores e desejos do público) */}
+        <VitalBenefits 
+          onExploreProduct={() => {
+            const el = document.getElementById('destaque-produto');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
 
-          {/* 5. Nova Seção: Nossa Essência (Nascemos da Natureza) */}
-          <BrandEssence />
+        {/* 5. Nova Seção: Nossa Essência (Nascemos da Natureza) */}
+        <BrandEssence />
 
-          {/* 5. Nova Seção: Da Origem ao Produto (4 Pilares institucionais) */}
-          <BrandPillars />
+        {/* 6. Nova Seção: Da Origem ao Produto (4 Pilares institucionais) */}
+        <BrandPillars />
 
-          {/* 6. Nova Seção: Ingredientes da Nossa Essência (Acervo Botânico) */}
-          <IngredientsCatalog />
+        {/* 7. Nova Seção: Ingredientes da Nossa Essência (Acervo Botânico) */}
+        <IngredientsCatalog />
 
-          {/* 7. Para Quem É (Público & Momentos de Consumo) */}
-          <Audience />
+        {/* 8. Para Quem É (Público & Momentos de Consumo) */}
+        <Audience />
 
-          {/* 8. Nova Seção: Por Que Raiz Vital? (Diferenciais da Marca) */}
-          <BrandWhyUs />
+        {/* 9. Nova Seção: Por Que Raiz Vital? (Diferenciais da Marca) */}
+        <BrandWhyUs />
 
-          {/* 9. Nova Seção: Produto em Destaque (Power Nature) */}
-          <FeaturedProduct 
-            onBuyClick={handleDirectBuy}
-            onOpenNutrition={() => setIsNutritionOpen(true)}
-          />
+        {/* 10. Nova Seção: Produto em Destaque (Power Nature) */}
+        <FeaturedProduct 
+          onBuyClick={handleDirectBuy}
+          onOpenNutrition={() => setIsNutritionOpen(true)}
+        />
 
-          {/* 10. Como Consumir / Ritual */}
-          <HowToUse />
+        {/* 11. Como Consumir / Ritual */}
+        <HowToUse />
 
-          {/* 11. Confiança & Avaliações */}
-          <TrustProof />
+        {/* 12. Confiança & Avaliações */}
+        <TrustProof />
 
-          {/* 12. FAQ */}
-          <FAQ />
+        {/* 13. FAQ */}
+        <FAQ />
 
-          {/* 13. Instagram (@araizvital) */}
-          <InstagramSection />
+        {/* 14. Instagram (@araizvital) */}
+        <InstagramSection />
 
-          {/* 14. CTA Final */}
-          <FinalCTA onBuyClick={handleDirectBuy} />
-        </main>
-      )}
+        {/* 15. CTA Final */}
+        <FinalCTA onBuyClick={handleDirectBuy} />
+      </main>
 
       {/* 16. Rodapé Oficial Raiz Vital */}
       <Footer 
