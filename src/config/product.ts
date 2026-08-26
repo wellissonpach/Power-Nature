@@ -99,7 +99,7 @@ export const benefitsData: BenefitItem[] = [
     description: "Ingrediente típico do Cerrado brasileiro que agrega valor nutricional, perfil de lipídios benéficos e identidade autêntica ao produto.",
     tag: "Origem Brasil",
     iconName: "Nut",
-    image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?q=80&w=900&auto=format&fit=crop"
+    image: "/castanha-de-baru.webp"
   },
   {
     id: "proteina",

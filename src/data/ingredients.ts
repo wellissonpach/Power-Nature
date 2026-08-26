@@ -19,7 +19,7 @@ export const ingredientsCatalogData: IngredientItem[] = [
     role: "Superalimento nativo com perfil nobre de lipídios benéficos e proteínas.",
     description: "Fruto autêntico da biodiversidade do Cerrado, a castanha de baru passa por torra e micronização cuidadosas para agregar sabor marcante e densidade nutricional autêntica aos produtos da Raiz Vital.",
     badge: "Bioma Brasileiro",
-    image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?q=80&w=900&auto=format&fit=crop"
+    image: "/castanha-de-baru.webp"
   },
   {
     id: "proteinas-vegetais",
