@@ -32,7 +32,7 @@ export const brandPillarsData: BrandPillarItem[] = [
     number: "03",
     title: "FORMULAÇÃO",
     subtitle: "Equilíbrio e Funcionalidade",
-    description: "Cada ingrediente tem um propósito claro e harmônico, combinando macronutrientes e minerais para acompanhar sua performance com leveza.",
+    description: "Cada ingrediente tem um propósito claro e harmônico, combinando nutrientes naturais para acompanhar sua rotina com leveza e vitalidade.",
     iconName: "Sparkles"
   },
   {

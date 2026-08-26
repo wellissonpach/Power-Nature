@@ -76,8 +76,7 @@ export const FeaturedProduct: React.FC<FeaturedProductProps> = ({
               </p>
 
               <p className="text-sm text-[#c4bcc0] font-light leading-relaxed mb-6">
-                O suplemento funcional da Raiz Vital desenvolvido para quem busca disposição, resistência e foco a partir de ingredientes puros da terra. 
-                Une a beterraba em pó e a castanha de baru em uma sinergia 100% de origem vegetal.
+                O Power Nature, é um suplemento alimentar desenvolvido com beterraba em pó desidratada, castanha de baru do Cerrado e proteína vegetal isolada. Entrega nutrição limpa sem corantes artificiais
               </p>
 
               {/* Highlights check list */}

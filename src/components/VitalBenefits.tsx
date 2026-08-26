@@ -43,7 +43,7 @@ const benefitsList: BenefitCardData[] = [
     desire: "Quero uma alimentação mais nutritiva",
     title: "NUTRIÇÃO VEGETAL",
     ingredient: "Baru + Proteína Vegetal",
-    description: "Densidade nutricional de verdade: união do perfil lipídico benéfico e minerais da castanha de baru com nutrientes de base vegetal para nutrir seu corpo.",
+    description: "Densidade nutricional de verdade: união do perfil lipídico benéfico da castanha de baru com proteínas de base vegetal para nutrir seu corpo.",
     badge: "Superalimento Cerrado",
     icon: Sprout,
     image: "/nutricao-vegetal1.webp"

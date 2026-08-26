@@ -29,7 +29,7 @@ export const BaruSection: React.FC = () => {
 
             <p className="text-base sm:text-lg text-[#f5f5f0a0] leading-relaxed mb-6 font-light">
               A castanha de baru é um dos tesouros botânicos mais valiosos do Cerrado brasileiro. 
-              Tradicionalmente colhida em árvores nativas, ela combina um sabor amendoado sofisticado com alta densidade de nutrientes vegetais e minerais.
+              Tradicionalmente colhida em árvores nativas, ela combina um sabor amendoado sofisticado com alta densidade de nutrientes vegetais e lipídios benéficos.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -50,9 +50,9 @@ export const BaruSection: React.FC = () => {
                   <Check className="w-3 h-3" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">Riqueza em Minerais Naturais</h4>
+                  <h4 className="text-sm font-semibold text-white">Riqueza em Nutrientes do Cerrado</h4>
                   <p className="text-xs text-[#f5f5f0a0] mt-0.5">
-                    Fonte vegetal de magnésio, potássio e ferro provenientes do solo do bioma brasileiro.
+                    Fonte vegetal de lipídios nobres e antioxidantes provenientes do solo do bioma brasileiro.
                   </p>
                 </div>
               </div>

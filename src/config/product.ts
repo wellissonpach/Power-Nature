@@ -16,13 +16,13 @@ export const productConfig: ProductConfig = {
     "300g • Conteúdo líquido",
     "Beterraba em pó selecionada",
     "Castanha de baru do Cerrado",
-    "Proteína vegetal e minerais naturais",
+    "Proteína vegetal isolada",
     "Zero corantes ou aromas artificiais",
     "100% Origem Vegetal"
   ],
   suggestedUse: "Sugere-se a ingestão de 2 scoops ao dia, antes ou depois do treino. Siga sempre as orientações presentes na embalagem.",
   storageInfo: "Conservar ao abrigo da luz, calor e umidade. Após aberto, consumir preferencialmente em até 60 dias.",
-  ingredientsText: "Beterraba em pó desidratada, castanha de baru torrada e micronizada, proteína vegetal isolada, minerais e nutrientes naturalmente presentes nos ingredientes.",
+  ingredientsText: "Beterraba em pó desidratada, castanha de baru torrada e micronizada, proteína vegetal isolada e nutrientes naturalmente presentes nos ingredientes.",
   allergenWarning: "ALÉRGICOS: CONTÉM CASTANHA DE BARU. PODE CONTER DERIVADOS VEGETAIS. NÃO CONTÉM GLÚTEN.",
   
   packs: [
@@ -109,15 +109,6 @@ export const benefitsData: BenefitItem[] = [
     tag: "100% Plant-Based",
     iconName: "Leaf",
     image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=900&auto=format&fit=crop"
-  },
-  {
-    id: "minerais",
-    title: "MINERAIS NATURAIS",
-    subtitle: "Equilíbrio que vem da terra",
-    description: "Destaque para minerais como potássio, magnésio e ferro provenientes dos próprios ingredientes vegetais utilizados na formulação.",
-    tag: "Sem Aditivos",
-    iconName: "Sparkles",
-    image: "https://images.unsplash.com/photo-1518843875459-f738682238a6?q=80&w=900&auto=format&fit=crop"
   }
 ];
 

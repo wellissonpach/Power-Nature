@@ -104,7 +104,7 @@ export const PhilosophySection: React.FC = () => {
                   <div className="w-5 h-5 rounded-full bg-[#8b1a3e]/40 flex items-center justify-center text-[#ff3e78] shrink-0 mt-0.5 border border-[#8b1a3e]">
                     <Check className="w-3.5 h-3.5" />
                   </div>
-                  <span className="font-medium">Minerais e cor naturalmente provenientes da terra</span>
+                  <span className="font-medium">Nutrientes e cor naturalmente provenientes da terra</span>
                 </li>
               </ul>
             </div>
