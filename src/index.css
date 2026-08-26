@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Outfit", system-ui, -apple-system, sans-serif;
+}
+
+.font-serif-hero {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+}
+
+.font-cormorant {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Power Nature | Pré-Treino Beterraba e Baru",
+  "description": "Website premium de venda direta para o Pré-Treino Beterraba e Baru da Power Nature, com nutrição funcional, ingredientes naturais brasileiros e alta performance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
