@@ -11,7 +11,7 @@ export const InstagramSection: React.FC = () => {
 
   const instagramPosts = [
     {
-      image: "https://images.unsplash.com/photo-1518843875459-f738682238a6?q=80&w=600&auto=format&fit=crop",
+      image: "/raiz-vital1.webp",
       tag: "#RaizVital",
       title: "Nutrição que vem da terra"
     },
@@ -21,7 +21,7 @@ export const InstagramSection: React.FC = () => {
       title: "Constância nos pedais"
     },
     {
-      image: "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?q=80&w=600&auto=format&fit=crop",
+      image: "/raiz-vital2.webp",
       tag: "#BeterrabaBaru",
       title: "Cor e vitalidade natural"
     },

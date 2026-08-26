@@ -27,7 +27,7 @@ export const IngredientsCatalog: React.FC = () => {
         </div>
 
         {/* Ingredients Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto gap-8 sm:gap-10">
           {ingredientsCatalogData.map((item) => (
             <div
               key={item.id}
@@ -35,7 +35,7 @@ export const IngredientsCatalog: React.FC = () => {
             >
               <div>
                 {/* Visual Image */}
-                <div className="w-full h-48 overflow-hidden relative">
+                <div className="w-full h-56 sm:h-64 overflow-hidden relative">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -73,14 +73,25 @@ export const IngredientsCatalog: React.FC = () => {
                 </div>
               </div>
 
-              {/* Role in products */}
-              <div className="px-6 pb-6 pt-3 border-t border-white/5 bg-[#16060c]/40">
-                <span className="text-[10px] font-mono text-[#ff3e78] uppercase tracking-widest block mb-1">
-                  Papel na Fórmula:
+              {/* Benefícios */}
+              <div className="px-6 pb-6 pt-3.5 border-t border-white/5 bg-[#16060c]/50">
+                <span className="text-[10px] font-mono text-[#ff3e78] uppercase tracking-[0.2em] block mb-2 font-bold">
+                  BENEFÍCIOS:
                 </span>
-                <p className="text-[11px] text-[#e8dfe3] font-normal leading-snug">
-                  {item.role}
-                </p>
+                {item.benefits && item.benefits.length > 0 ? (
+                  <ul className="space-y-1.5 text-[11px] text-[#e8dfe3]">
+                    {item.benefits.map((b, bIdx) => (
+                      <li key={bIdx} className="flex items-start gap-1.5 leading-snug">
+                        <span className="text-[#ff3e78] font-bold shrink-0">•</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-[11px] text-[#e8dfe3] font-normal leading-snug">
+                    {item.role}
+                  </p>
+                )}
               </div>
             </div>
           ))}

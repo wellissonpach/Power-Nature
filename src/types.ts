@@ -68,7 +68,8 @@ export interface IngredientItem {
   name: string;
   scientificOrType?: string;
   origin: string;
-  role: string;
+  role?: string;
+  benefits?: string[];
   description: string;
   badge: string;
   image: string;

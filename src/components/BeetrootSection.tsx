@@ -15,7 +15,7 @@ export const BeetrootSection: React.FC = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden border border-[#8b1a3e]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#14070a] group">
               <img
-                src="https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?q=80&w=1200&auto=format&fit=crop"
+                src="/beterraba-po.webp"
                 alt="Beterraba fresca e desidratada selecionada"
                 referrerPolicy="no-referrer"
                 loading="lazy"

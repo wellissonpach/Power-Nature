@@ -81,7 +81,7 @@ export const BaruSection: React.FC = () => {
           <div className="lg:col-span-6 relative order-1 lg:order-2">
             <div className="relative rounded-3xl overflow-hidden border border-[#8b1a3e]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#14070a] group">
               <img
-                src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?q=80&w=1200&auto=format&fit=crop"
+                src="/castanha-de-baru.webp"
                 alt="Castanhas torradas do Cerrado brasileiro"
                 referrerPolicy="no-referrer"
                 loading="lazy"

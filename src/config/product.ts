@@ -90,7 +90,7 @@ export const benefitsData: BenefitItem[] = [
     description: "Ingrediente natural utilizado na composição do produto, fornecendo a cor vibrante característica e os nutrientes naturais da raiz desidratada.",
     tag: "Ingrediente Chave",
     iconName: "Flame",
-    image: "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?q=80&w=900&auto=format&fit=crop"
+    image: "/beterraba-po.webp"
   },
   {
     id: "baru",
@@ -108,7 +108,7 @@ export const benefitsData: BenefitItem[] = [
     description: "Componente vegetal presente na composição, ideal para quem busca complementar a ingestão diária sem ingredientes de origem animal.",
     tag: "100% Plant-Based",
     iconName: "Leaf",
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=900&auto=format&fit=crop"
+    image: "/proteina-vegetal1.webp"
   }
 ];
 
