@@ -7,8 +7,19 @@ export const productConfig: ProductConfig = {
   category: "Suplemento Funcional",
   weight: "300g",
   servings: "Rende até 30 porções",
-  priceFormatted: "R$ 139,90", // Placeholder configurável: [INSERIR PREÇO]
+  price: 69.00,
+  priceFormatted: "R$ 69,00",
+  originalPriceFormatted: "R$ 99,00",
   checkoutUrl: "https://www.mercadolivre.com.br/up/MLBU3918928553?matt_tool=38524122&pdp_filters=item_id:MLB6673563802&ua=zEvQXhstzQcaJN2Hf8M05JhR6sTd4o9D-6xPbGB4bIPspA#origin=share&sid=share&wid=MLB6673563802&action=whatsapp",
+  orderBump: {
+    name: "Power Nature Pré Treino",
+    badge: "OFERTA COMPLEMENTAR",
+    price: 69.00,
+    originalPrice: 99.00,
+    description: "Pré treino poderoso para potencializar ainda mais seus treinos, utilizando inovação e tecnologia botânica de ponta, sem picos artificiais.",
+    image: "/imagem-hero.webp",
+    checkoutUrlWithBump: "https://www.mercadolivre.com.br/up/MLBU3918928553?matt_tool=38524122&pdp_filters=item_id:MLB6673563802&ua=zEvQXhstzQcaJN2Hf8M05JhR6sTd4o9D-6xPbGB4bIPspA#origin=share&sid=share&wid=MLB6673563802&action=whatsapp"
+  },
   instagramHandle: "@araizvital",
   instagramUrl: "https://instagram.com/araizvital",
   whatsappContact: "+55 61 8326-6395",
@@ -174,7 +185,7 @@ export const differentialsData = [
 export const faqData: FaqItem[] = [
   {
     question: "O que é o Power Nature Beterraba e Baru?",
-    answer: "O Power Nature é um suplemento funcional pré-treino formulado com beterraba em pó desidratada, castanha de baru micronizada, proteína vegetal e minerais naturais. Foi desenvolvido para acompanhar pessoas ativas antes ou depois das atividades físicas.",
+    answer: "O Power Nature é um suplemento funcional formulado com beterraba em pó desidratada, castanha de baru micronizada, proteína vegetal e minerais naturais. Foi desenvolvido para acompanhar pessoas ativas antes ou depois das atividades físicas.",
     category: "Sobre o Produto"
   },
   {

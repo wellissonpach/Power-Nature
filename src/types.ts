@@ -96,6 +96,16 @@ export interface BrandConfig {
   supportEmail: string;
 }
 
+export interface OrderBumpConfig {
+  name: string;
+  badge?: string;
+  price: number;
+  originalPrice?: number;
+  description: string;
+  image?: string;
+  checkoutUrlWithBump: string;
+}
+
 export interface ProductConfig {
   name: string;
   fullName: string;
@@ -103,11 +113,15 @@ export interface ProductConfig {
   category: string;
   weight: string;
   servings: string;
+  price: number;
   priceFormatted: string;
+  originalPriceFormatted?: string;
   checkoutUrl: string;
+  orderBump?: OrderBumpConfig;
   instagramHandle: string;
   instagramUrl: string;
   whatsappContact?: string;
+  supportEmail?: string;
   highlights: string[];
   suggestedUse: string;
   storageInfo: string;

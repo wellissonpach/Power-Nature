@@ -63,7 +63,7 @@ export const ProductOffer: React.FC<ProductOfferProps> = ({ onBuy, onOpenNutriti
               <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-square flex items-center justify-center">
                 <img
                   src="/imagem-hero.webp"
-                  alt="Power Nature Pré-Treino Beterraba e Baru"
+                  alt="Power Nature Beterraba e Baru"
                   className="w-full h-full object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.9)] hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
