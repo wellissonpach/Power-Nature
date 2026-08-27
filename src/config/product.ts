@@ -2,7 +2,7 @@ import { ProductConfig, BenefitItem, AudienceItem, FaqItem } from '../types';
 
 export const productConfig: ProductConfig = {
   name: "Power Nature",
-  fullName: "Power Nature Pré-Treino Beterraba e Baru",
+  fullName: "Power Nature Beterraba e Baru",
   tagline: "Natureza transformada em performance.",
   category: "Suplemento Funcional",
   weight: "300g",

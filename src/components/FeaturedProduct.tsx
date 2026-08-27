@@ -37,11 +37,11 @@ export const FeaturedProduct: React.FC<FeaturedProductProps> = ({
             
             {/* Image Column */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
-              <div className="relative w-full max-w-[320px] aspect-square flex items-center justify-center">
+              <div className="relative w-full max-w-[340px] aspect-[4/5] sm:aspect-square flex items-center justify-center rounded-2xl overflow-hidden border border-[#801438]/50 shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
                 <img
-                  src="/imagem-hero.webp"
-                  alt="Power Nature Pré-Treino Beterraba e Baru"
-                  className="w-full h-full object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.9)] hover:scale-105 transition-transform duration-500"
+                  src="/video-mobile-lastframe.webp"
+                  alt="Power Nature Beterraba e Baru"
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
               </div>
@@ -82,7 +82,7 @@ export const FeaturedProduct: React.FC<FeaturedProductProps> = ({
                 ))}
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Button */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full">
                 <button
                   onClick={onBuyClick}
@@ -92,15 +92,6 @@ export const FeaturedProduct: React.FC<FeaturedProductProps> = ({
                   <span>COMPRAR AGORA</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-
-                {onOpenNutrition && (
-                  <button
-                    onClick={onOpenNutrition}
-                    className="px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
-                  >
-                    Tabela Nutricional
-                  </button>
-                )}
               </div>
 
             </div>
