@@ -18,7 +18,6 @@ import {
 interface AudiencePoint {
   id: number;
   text: string;
-  tag: string;
   icon: React.ElementType;
 }
 
@@ -26,61 +25,51 @@ const audiencePoints: AudiencePoint[] = [
   {
     id: 1,
     text: "Tem dificuldade no treino e não consegue ter resultados melhores",
-    tag: "Superação & Resultado",
     icon: Dumbbell
   },
   {
     id: 2,
     text: "Está estagnado na performance e quer evoluir ou ter mais resultados",
-    tag: "Quebra de Platô",
     icon: TrendingUp
   },
   {
     id: 3,
     text: "Não quer mais rasgar dinheiro com suplementos ou produtos milagrosos",
-    tag: "Consumo Inteligente",
     icon: ShieldCheck
   },
   {
     id: 4,
     text: "Quer chamar atenção com o efeito vasodilatador",
-    tag: "Vasodilatação & Pump",
     icon: Flame
   },
   {
     id: 5,
     text: "Quer ser mais atraente e confiante para se relacionar ou para melhorar a relação com o parceiro(a) (sexualmente falando também)",
-    tag: "Atração & Autoconfiança",
     icon: Heart
   },
   {
     id: 6,
     text: "Metabolismo ruim e falta de disposição",
-    tag: "Energia & Metabolismo",
     icon: Zap
   },
   {
     id: 7,
     text: "Quer definir e secar o corpo sem prejudicar a saúde",
-    tag: "Definição Consciente",
     icon: Activity
   },
   {
     id: 8,
     text: "Quer ter mais performance nos treinos e nas horas íntimas",
-    tag: "Vigor & Alta Performance",
     icon: Sparkles
   },
   {
     id: 9,
     text: "Não quer mais procrastinar e quer transformar os treinos e o corpo",
-    tag: "Foco & Transformação",
     icon: Target
   },
   {
     id: 10,
     text: "Iniciou na academia e quer resultados",
-    tag: "Início Acelerado",
     icon: CheckCircle2
   }
 ];
@@ -220,45 +209,22 @@ export const VitalBenefits: React.FC<VitalBenefitsProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-14 sm:mb-16">
           {audiencePoints.map((item) => {
             const Icon = item.icon;
-            const formattedNumber = item.id < 10 ? `0${item.id}` : `${item.id}`;
 
             return (
               <div
                 key={item.id}
-                className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#16060c]/90 via-[#100408]/90 to-[#0a0305]/95 border border-[#3a1020] hover:border-[#801438] p-5 sm:p-7 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.6)] flex items-start gap-4 sm:gap-5 group hover:-translate-y-0.5 relative overflow-hidden"
+                className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#16060c]/90 via-[#100408]/90 to-[#0a0305]/95 border border-[#3a1020] hover:border-[#801438] p-5 sm:p-6 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.6)] flex items-center gap-4 sm:gap-5 group hover:-translate-y-0.5 relative overflow-hidden"
               >
-                {/* Numbered Accent & Icon Container */}
-                <div className="flex flex-col items-center shrink-0">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl bg-[#1f0810] border border-[#801438]/70 flex items-center justify-center text-[#ff3e78] group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(128,20,56,0.3)]">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </div>
-                  <span className="mt-2 text-[10px] sm:text-[11px] font-mono text-[#ff3e78]/70 font-bold">
-                    {formattedNumber}
-                  </span>
+                {/* Lateral Icon Container */}
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#1f0810] border border-[#801438]/70 flex items-center justify-center text-[#ff3e78] group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(128,20,56,0.3)] shrink-0">
+                  <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
                 </div>
 
-                {/* Content */}
-                <div className="flex-1 flex flex-col justify-between min-h-full">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2.5 py-0.5 rounded-md bg-[#801438]/20 border border-[#801438]/40 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-[#ff6b95] font-semibold">
-                        {item.tag}
-                      </span>
-                    </div>
-
-                    <p className="text-sm sm:text-base text-[#f5f3f0] font-medium leading-relaxed">
-                      {item.text}
-                    </p>
-                  </div>
-
-                  {/* Visual Bottom Micro-Line */}
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-[#8e8588] uppercase tracking-wider">
-                    <span className="flex items-center gap-1 text-[#ff3e78] font-bold">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#ff3e78]" />
-                      Solução Power Nature
-                    </span>
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#ff3e78] group-hover:scale-150 transition-transform shadow-[0_0_8px_#ff3e78]" />
-                  </div>
+                {/* Text Content */}
+                <div className="flex-1">
+                  <p className="text-sm sm:text-base text-[#f5f3f0] font-medium leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
               </div>
             );
