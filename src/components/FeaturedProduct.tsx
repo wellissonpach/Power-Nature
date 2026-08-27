@@ -25,19 +25,10 @@ export const FeaturedProduct: React.FC<FeaturedProductProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#18060d] border border-[#801438]/60 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#ff3e78] font-bold mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>LINHA EM EVIDÊNCIA</span>
-          </div>
-
-          <h2 className="font-serif-hero text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
-            EM DESTAQUE
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <h2 className="font-serif-hero text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase font-bold">
+            POWER NATURE
           </h2>
-
-          <p className="mt-4 text-sm sm:text-base text-[#b5adb0] font-light leading-relaxed">
-            Conheça um dos produtos que representam a proposta da Raiz Vital.
-          </p>
         </div>
 
         {/* Feature Hero Box */}

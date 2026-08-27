@@ -70,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
   return (
     <section
       id="hero-section"
-      className="relative min-h-screen pt-[84px] pb-4 sm:pt-24 sm:pb-8 lg:pt-36 lg:pb-16 flex flex-col justify-between overflow-hidden bg-[#070204]"
+      className="relative min-h-screen pt-10 pb-4 sm:pt-14 sm:pb-8 lg:pt-20 lg:pb-16 flex flex-col justify-between overflow-hidden bg-[#070204]"
     >
       {/* Desktop Background Image (Hidden on Mobile) */}
       <picture className="absolute inset-0 w-full h-full pointer-events-none z-0 transform-gpu hidden md:block">
@@ -118,20 +118,14 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
           
           {/* Left Column: Typography & Conversion Action */}
           <div className="lg:col-span-7 xl:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left z-20">
-            {/* Identificação de destaque */}
-            <div className="mb-2.5 sm:mb-3.5 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#18060d]/80 border border-[#801438]/60 text-[9px] sm:text-[11px] uppercase tracking-[0.22em] text-[#ff3e78] font-bold backdrop-blur-sm shadow-[0_0_15px_rgba(128,20,56,0.25)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff3e78] animate-pulse" />
-              <span>PRODUTO EM DESTAQUE</span>
-            </div>
-
             {/* Editorial Headline with progressive fast reveal */}
-            <h1 className="font-serif-hero text-[30px] sm:text-4xl md:text-5xl lg:text-[60px] xl:text-[66px] leading-[1.08] tracking-[-0.01em] text-[#f5f3f0] font-normal drop-shadow-md">
+            <h1 className="font-serif-hero text-[28px] sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[62px] leading-[1.1] tracking-[-0.01em] text-[#f5f3f0] font-normal drop-shadow-md uppercase">
               <span
                 className={`inline-block transition-all duration-500 ease-out ${
                   isLine1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
               >
-                A força dos
+                A FÓRMULA
               </span> <br />
 
               <span
@@ -139,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
                   isLine2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
               >
-                ingredientes naturais
+                MAIS AVANÇADA
               </span> <br />
 
               <span
@@ -147,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
                   isLine3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
               >
-                para <span className="text-[#c02652] font-medium tracking-wide">TURBINAR</span>
+                PARA <span className="text-[#c02652] font-medium tracking-wide">TRANSFORMAR</span>
               </span> <br />
 
               <span
@@ -155,7 +149,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
                   isLine4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
               >
-                sua rotina
+                SEU CORPO E SUA ROTINA
               </span>
             </h1>
 

@@ -9,7 +9,7 @@ export const brandConfig: BrandConfig = {
   essenceText: "A Raiz Vital nasce da busca por transformar ingredientes naturais em produtos pensados para acompanhar uma vida mais ativa, equilibrada e consciente. Combinamos a riqueza botânica brasileira, pureza na formulação e respeito aos processos naturais para criar nutrição funcional de verdade.",
   instagramHandle: "@araizvital",
   instagramUrl: "https://instagram.com/araizvital",
-  whatsappContact: "+55 (11) 99999-9999",
+  whatsappContact: "+55 61 8326-6395",
   supportEmail: "contato@raizvital.com.br"
 };
 
@@ -50,12 +50,6 @@ export const brandDifferentials = [
     title: "INGREDIENTES SELECIONADOS",
     description: "Matérias-primas de alta pureza escolhidas a dedo para compor fórmulas ricas em nutrientes naturais.",
     icon: "Sprout"
-  },
-  {
-    id: "diff-2",
-    title: "ORIGEM E IDENTIDADE BRASILEIRA",
-    description: "Valorização de superfrutos e castanhas nativas dos nossos biomas, como a castanha de baru.",
-    icon: "MapPin"
   },
   {
     id: "diff-3",

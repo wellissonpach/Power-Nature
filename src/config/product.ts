@@ -8,10 +8,11 @@ export const productConfig: ProductConfig = {
   weight: "300g",
   servings: "Rende até 30 porções",
   priceFormatted: "R$ 139,90", // Placeholder configurável: [INSERIR PREÇO]
-  checkoutUrl: "https://checkout.powernature.com.br/pre-treino-beterraba-baru", // Placeholder: [LINK DE CHECKOUT]
+  checkoutUrl: "https://www.mercadolivre.com.br/up/MLBU3918928553?matt_tool=38524122&pdp_filters=item_id:MLB6673563802&ua=zEvQXhstzQcaJN2Hf8M05JhR6sTd4o9D-6xPbGB4bIPspA#origin=share&sid=share&wid=MLB6673563802&action=whatsapp",
   instagramHandle: "@araizvital",
   instagramUrl: "https://instagram.com/araizvital",
-  whatsappContact: "+55 (11) 99999-9999",
+  whatsappContact: "+55 61 8326-6395",
+  supportEmail: "contato@raizvital.com.br",
   highlights: [
     "300g • Conteúdo líquido",
     "Beterraba em pó selecionada",
@@ -116,35 +117,28 @@ export const audienceData: AudienceItem[] = [
   {
     id: "corredores",
     title: "CORREDORES",
-    description: "Para quem faz da corrida parte da rotina e busca uma nutrição leve e de rápida digestibilidade antes do asfalto ou da trilha.",
+    description: "",
     iconName: "Footprints",
     image: "https://images.unsplash.com/photo-1486218119243-13883505764c?q=80&w=800&auto=format&fit=crop"
   },
   {
     id: "ciclistas",
     title: "CICLISTAS",
-    description: "Para quem busca praticidade e constância antes dos treinos de estrada ou mountain bike de curta ou longa distância.",
+    description: "",
     iconName: "Bike",
     image: "/ciclismo.webp"
   },
   {
     id: "musculacao",
     title: "PRATICANTES DE ACADEMIA",
-    description: "Para pessoas que incorporam musculação e treinamento de força à rotina e preferem ingredientes limpos.",
+    description: "",
     iconName: "Dumbbell",
     image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop"
   },
   {
-    id: "veganos",
-    title: "VEGANOS E VEGETARIANOS",
-    description: "Para consumidores que priorizam opções de origem vegetal pura, sem derivados lácteos ou insumos animais.",
-    iconName: "Vegan",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: "ativos",
-    title: "PESSOAS ATIVAS",
-    description: "Para quem busca integrar alimentação e exercício físico consciente em uma rotina diária equilibrada e produtiva.",
+    id: "atletas",
+    title: "ATLETAS",
+    description: "",
     iconName: "HeartPulse",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop"
   }

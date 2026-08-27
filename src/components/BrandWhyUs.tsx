@@ -22,16 +22,13 @@ export const BrandWhyUs: React.FC = () => {
           <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#c02652] font-semibold block mb-3">
             DIFERENCIAIS INSTITUCIONAIS
           </span>
-          <h2 className="font-serif-hero text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
-            POR QUE ESCOLHER A RAIZ VITAL?
+          <h2 className="font-serif-hero text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase">
+            POR QUE ESCOLHER A POWER NATURE?
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-[#b5adb0] font-light leading-relaxed">
-            Uma abordagem moderna e transparente para suplementos nutricionais, conectando o melhor da botânica ao seu estilo de vida.
-          </p>
         </div>
 
-        {/* 4 Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 3 Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {brandDifferentials.map((diff) => {
             const Icon = iconMap[diff.icon] || Sprout;
 

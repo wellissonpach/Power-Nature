@@ -28,30 +28,25 @@ export const Audience: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8b1a3e]/15 border border-[#8b1a3e] mb-4">
             <Sparkles className="w-3.5 h-3.5 text-[#ff3e78]" />
             <span className="text-[10px] font-bold tracking-widest text-[#ff3e78] uppercase">
               PARA SUA JORNADA
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#f5f5f0] mb-4">
-            Para quem é o Power Nature?
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#f5f5f0] font-serif-hero uppercase">
+            QUEM USA POWER NATURE?
           </h2>
-          <p className="text-base sm:text-lg text-[#f5f5f0a0] leading-relaxed font-light">
-            Desenvolvido para quem busca consistência diária, alimentação consciente e uma rotina ativa sem abrir mão da naturalidade.
-          </p>
         </div>
 
-        {/* 5 Cards Bento Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {audienceData.map((item, index) => {
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {audienceData.map((item) => {
             return (
               <div
                 key={item.id}
-                className={`group relative rounded-3xl overflow-hidden border border-[#ffffff15] hover:border-[#8b1a3e] transition-all duration-300 bg-[#14070a] flex flex-col justify-end min-h-[320px] shadow-lg ${
-                  index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
-                }`}
+                className="group relative rounded-3xl overflow-hidden border border-[#ffffff15] hover:border-[#8b1a3e] transition-all duration-300 bg-[#14070a] flex flex-col justify-end min-h-[280px] sm:min-h-[320px] shadow-lg"
                 id={`audience-card-${item.id}`}
               >
                 {/* Background Image */}
@@ -68,18 +63,14 @@ export const Audience: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0505] via-[#0a0505]/75 to-transparent" />
 
                 {/* Content */}
-                <div className="relative z-10 p-6 sm:p-8 flex flex-col justify-end">
-                  <div className="w-10 h-10 rounded-2xl bg-[#1a080c]/90 backdrop-blur-md border border-[#8b1a3e] flex items-center justify-center mb-4 shadow-md">
+                <div className="relative z-10 p-6 flex flex-col justify-end">
+                  <div className="w-10 h-10 rounded-2xl bg-[#1a080c]/90 backdrop-blur-md border border-[#8b1a3e] flex items-center justify-center mb-3 shadow-md">
                     {getAudienceIcon(item.iconName)}
                   </div>
 
-                  <h3 className="text-xl font-bold text-white tracking-wide mb-2 group-hover:text-[#ff3e78] transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide group-hover:text-[#ff3e78] transition-colors uppercase">
                     {item.title}
                   </h3>
-
-                  <p className="text-sm text-[#f5f5f0a0] leading-relaxed font-light">
-                    {item.description}
-                  </p>
                 </div>
               </div>
             );

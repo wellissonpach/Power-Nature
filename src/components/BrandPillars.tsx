@@ -1,80 +1,108 @@
 import React from 'react';
-import { brandPillarsData } from '../data/brand';
-import { Leaf, ShieldCheck, Sparkles, HeartPulse } from 'lucide-react';
 
-const iconMap: Record<string, React.ElementType> = {
-  Leaf,
-  ShieldCheck,
-  Sparkles,
-  HeartPulse
-};
+const effectPhases = [
+  {
+    icon: "🚀",
+    title: "Efeitos imediatos (De 2 a 3 horas após o consumo)",
+    intro: "Os benefícios voltados para o rendimento físico e a vasodilatação não exigem dias de consumo acumulado. Eles são agudos:",
+    bullets: [
+      {
+        label: "Melhora no treino",
+        text: "O pico de óxido nítrico no sangue ocorre entre 2 e 3 horas após a ingestão."
+      },
+      {
+        label: "Resultados visíveis",
+        text: "Você sentirá menor fadiga muscular, maior resistência para completar as séries e um efeito de \"pump\" (músculos mais cheios devido ao maior fluxo sanguíneo) logo no primeiro treino."
+      }
+    ]
+  },
+  {
+    icon: "📈",
+    title: "Efeitos de médio prazo (De 1 a 2 semanas)",
+    intro: "Com o consumo diário e consistente, o corpo estabiliza os níveis de nitrato e os benefícios sistêmicos começam a se consolidar:",
+    bullets: [
+      {
+        label: "Pressão arterial",
+        text: "Estudos mostram que uma semana de consumo diário já é suficiente para observar uma redução sustentada na pressão arterial em pessoas com pré-hipertensão ou hipertensão leve."
+      },
+      {
+        label: "Eficiência mitocondrial",
+        text: "Suas células musculares passam a gastar menos oxigênio para produzir a mesma quantidade de energia, melhorando o fôlego nas atividades do dia a dia."
+      }
+    ]
+  },
+  {
+    icon: "🧠",
+    title: "Efeitos de longo prazo (A partir de 1 mês)",
+    intro: "Os reflexos na composição corporal e na saúde geral aparecem de forma indireta com a constância:",
+    bullets: [
+      {
+        label: "Recuperação e Hipertrofia",
+        text: "Ao treinar mais intensamente todos os dias e se recuperar mais rápido, os resultados estéticos (ganho de massa magra e definição) começam a ficar mais visíveis a partir de 30 a 45 dias."
+      },
+      {
+        label: "Saúde cerebral",
+        text: "A melhora contínua no fluxo sanguíneo favorece a oxigenação do córtex cerebral, otimizando a memória e o foco cognitivo."
+      }
+    ]
+  }
+];
 
-export const BrandPillars: React.FC = () => {
+export const EffectPhases: React.FC = () => {
   return (
     <section 
-      id="pilares-marca" 
-      className="py-20 sm:py-28 bg-[#0a0505] relative overflow-hidden border-t border-[#2d0e19]/40"
+      id="fases-efeitos" 
+      className="py-16 sm:py-24 bg-[#0a0505] relative overflow-hidden border-t border-[#2d0e19]/50"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#c02652] font-semibold block mb-3">
-            DA ORIGEM AO PRODUTO
-          </span>
-          <h2 className="font-serif-hero text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
-            NOSSA VISÃO SOBRE PRODUTOS NATURAIS
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-[#b5adb0] font-light leading-relaxed">
-            Mais do que fornecer suplementos, desenvolvemos formulações funcionais a partir de quatro pilares de rigor e respeito à botânica.
-          </p>
-        </div>
+        {/* Título Principal */}
+        <h2 className="font-serif-hero text-2xl sm:text-3xl md:text-4xl text-white tracking-tight uppercase text-center mb-12 sm:mb-16 font-normal">
+          FASES DE EFEITOS COM O USO DO POWER NATURE
+        </h2>
 
-        {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {brandPillarsData.map((pillar) => {
-            const Icon = iconMap[pillar.iconName] || Leaf;
-
-            return (
-              <div 
-                key={pillar.number}
-                className="p-8 rounded-3xl bg-gradient-to-b from-[#13060a] to-[#0d0407] border border-[#2d0e19] hover:border-[#801438]/70 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-2xl sm:text-3xl font-serif-hero text-[#c02652] font-bold">
-                      {pillar.number}
-                    </span>
-                    <div className="w-10 h-10 rounded-xl bg-[#1f0912] border border-[#801438]/50 flex items-center justify-center text-[#ff3e78] group-hover:scale-110 transition-transform">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-white tracking-wider uppercase mb-1">
-                    {pillar.title}
+        {/* 3 Fases em Linha / Cards Suaves */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {effectPhases.map((phase, idx) => (
+            <div
+              key={idx}
+              className="p-6 sm:p-7 rounded-2xl bg-[#110508]/70 border border-[#2d0e19] hover:border-[#801438]/60 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                {/* Cabeçalho da Fase */}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-2xl sm:text-3xl">{phase.icon}</span>
+                  <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                    {phase.title}
                   </h3>
-
-                  <p className="text-xs text-[#e02b5e] font-serif-hero italic mb-3">
-                    {pillar.subtitle}
-                  </p>
-
-                  <p className="text-xs text-[#b5adb0] font-light leading-relaxed">
-                    {pillar.description}
-                  </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#c02652]" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#8e8588]">
-                    Padrão Raiz Vital
-                  </span>
+                {/* Texto Introdutório */}
+                <p className="text-xs sm:text-sm text-[#cfc7cb] font-light leading-relaxed mb-4">
+                  {phase.intro}
+                </p>
+
+                {/* Lista de Efeitos */}
+                <div className="space-y-3 pt-3 border-t border-white/5">
+                  {phase.bullets.map((bullet, bIdx) => (
+                    <div key={bIdx} className="text-xs sm:text-[13px] leading-relaxed text-[#b5adb0]">
+                      <strong className="text-white font-semibold block sm:inline">
+                        {bullet.label}:{' '}
+                      </strong>
+                      <span className="font-light text-[#cfc7cb]">
+                        {bullet.text}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
       </div>
     </section>
   );
 };
+
+export const BrandPillars = EffectPhases;

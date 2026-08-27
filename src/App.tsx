@@ -4,22 +4,19 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { ProductCatalog } from './components/ProductCatalog';
+import { PerformanceTechSection } from './components/PerformanceTechSection';
 import { VitalBenefits } from './components/VitalBenefits';
-import { BrandEssence } from './components/BrandEssence';
+import { EvolutionFactors } from './components/EvolutionFactors';
 import { BrandPillars } from './components/BrandPillars';
 import { IngredientsCatalog } from './components/IngredientsCatalog';
 import { Audience } from './components/Audience';
-import { BrandWhyUs } from './components/BrandWhyUs';
 import { FeaturedProduct } from './components/FeaturedProduct';
-import { HowToUse } from './components/HowToUse';
 import { TrustProof } from './components/TrustProof';
 import { FAQ } from './components/FAQ';
 import { InstagramSection } from './components/InstagramSection';
-import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
+import { WhatsAppButton } from './components/WhatsAppButton';
 import { NutritionModal } from './components/NutritionModal';
 import { CheckoutModal } from './components/CheckoutModal';
 import { LegalModals } from './components/LegalModals';
@@ -97,29 +94,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0a0505] text-[#f5f5f0] relative overflow-x-hidden font-sans selection:bg-[#8b1a3e] selection:text-white">
       
-      {/* 1. Official Sticky Header (Raiz Vital) */}
-      <Header 
-        onNavigate={navigateTo}
-        currentRoute={currentRoute}
-        onExploreProducts={() => {
-          const el = document.getElementById('produtos');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-      />
-
       <main>
-        {/* 2. Hero Section (Preservada visualmente como destaque do Power Nature) */}
+        {/* 1. Hero Section (Preservada visualmente como destaque do Power Nature) */}
         <Hero 
           onBuyClick={handleHeroBuyClick} 
           onExploreClick={handleExploreClick} 
         />
 
-        {/* 3. Nova Seção: Nossos Produtos (Catálogo de portfólio escalável) */}
-        <ProductCatalog 
-          onQuickBuy={() => handleDirectBuy()}
-        />
+        {/* 2. Nova Seção: Inovação & Tecnologia de Performance */}
+        <PerformanceTechSection />
 
-        {/* 4. Nova Seção: Benefícios dos Produtos Raiz Vital (Respostas para dores e desejos do público) */}
+        {/* 3. Nova Seção: Benefícios dos Produtos Raiz Vital (Respostas para dores e desejos do público) */}
         <VitalBenefits 
           onExploreProduct={() => {
             const el = document.getElementById('destaque-produto');
@@ -127,8 +112,8 @@ export default function App() {
           }}
         />
 
-        {/* 5. Nova Seção: Nossa Essência (Nascemos da Natureza) */}
-        <BrandEssence />
+        {/* 4. Nova Seção: Fatores Determinantes para Evolução & Como Atua */}
+        <EvolutionFactors />
 
         {/* 6. Nova Seção: Da Origem ao Produto (4 Pilares institucionais) */}
         <BrandPillars />
@@ -139,8 +124,8 @@ export default function App() {
         {/* 8. Para Quem É (Público & Momentos de Consumo) */}
         <Audience />
 
-        {/* 9. Nova Seção: Por Que Raiz Vital? (Diferenciais da Marca) */}
-        <BrandWhyUs />
+        {/* 9. Satisfação Garantida & Confiança */}
+        <TrustProof onBuyClick={handleDirectBuy} />
 
         {/* 10. Nova Seção: Produto em Destaque (Power Nature) */}
         <FeaturedProduct 
@@ -148,20 +133,11 @@ export default function App() {
           onOpenNutrition={() => setIsNutritionOpen(true)}
         />
 
-        {/* 11. Como Consumir / Ritual */}
-        <HowToUse />
-
-        {/* 12. Confiança & Avaliações */}
-        <TrustProof />
-
         {/* 13. FAQ */}
         <FAQ />
 
         {/* 14. Instagram (@araizvital) */}
         <InstagramSection />
-
-        {/* 15. CTA Final */}
-        <FinalCTA onBuyClick={handleDirectBuy} />
       </main>
 
       {/* 16. Rodapé Oficial Raiz Vital */}
@@ -188,6 +164,9 @@ export default function App() {
         type={legalModalType} 
         onClose={() => setLegalModalType(null)} 
       />
+
+      {/* Botão Flutuante Oficial do WhatsApp */}
+      <WhatsAppButton phoneNumber="556183266395" />
 
     </div>
   );

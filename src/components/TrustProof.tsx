@@ -1,107 +1,91 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { Star, ShieldCheck, MessageSquare, Award, CheckCircle } from 'lucide-react';
+import { Award, ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
+import { trackEvent } from '../utils/analytics';
 
-export const TrustProof: React.FC = () => {
+interface TrustProofProps {
+  onBuyClick?: () => void;
+}
+
+export const TrustProof: React.FC<TrustProofProps> = ({ onBuyClick }) => {
+  const handleCtaClick = () => {
+    trackEvent('click_buy', { source: 'satisfacao_garantida_section' });
+    if (onBuyClick) {
+      onBuyClick();
+    } else {
+      const el = document.getElementById('destaque-produto');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="py-20 md:py-28 bg-[#0a0505] relative overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section 
+      id="garantia" 
+      className="py-16 sm:py-24 lg:py-28 bg-[#0a0505] relative overflow-hidden border-t border-[#2d0e19]/50"
+    >
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-80 bg-radial from-[#801438]/15 via-transparent to-transparent pointer-events-none blur-3xl" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8b1a3e]/15 border border-[#8b1a3e] mb-4">
+        {/* Top Badge */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8b1a3e]/15 border border-[#8b1a3e]">
             <Award className="w-3.5 h-3.5 text-[#ff3e78]" />
-            <span className="text-[10px] font-bold tracking-widest text-[#ff3e78] uppercase">
+            <span className="text-[10px] sm:text-xs font-bold tracking-widest text-[#ff3e78] uppercase">
               COMPROMISSO & CONFIANÇA
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#f5f5f0] mb-4">
-            Qualidade em cada detalhe
-          </h2>
-          <p className="text-base sm:text-lg text-[#f5f5f0a0] leading-relaxed font-light">
-            Nosso compromisso é entregar nutrição pura e transparente para atletas e pessoas ativas em todo o país.
-          </p>
         </div>
 
-        {/* 3 Trust Pillar Blocks */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#14070a] border border-[#ffffff15] flex flex-col justify-between shadow-lg">
-            <div>
-              <div className="flex items-center gap-1 text-[#ff3e78] mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#ff3e78]" />
-                ))}
+        {/* Section Title */}
+        <h2 className="font-serif-hero text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase text-center mb-10 sm:mb-14 font-bold">
+          SATISFAÇÃO GARANTIDA
+        </h2>
+
+        {/* Guarantee Box Layout */}
+        <div className="rounded-3xl bg-gradient-to-br from-[#16060c]/90 via-[#100408]/95 to-[#0a0305] border border-[#801438]/60 p-6 sm:p-10 lg:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-md">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Image Column */}
+            <div className="lg:col-span-5 flex justify-center items-center">
+              <div className="relative max-w-[280px] sm:max-w-[320px] aspect-square rounded-2xl overflow-hidden border border-[#801438]/50 shadow-[0_10px_35px_rgba(128,20,56,0.3)] group">
+                <img
+                  src="/satisfação garantida.jpg"
+                  alt="Selo Satisfação Garantida"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">
-                Ingredientes Selecionados
-              </h3>
-              <p className="text-xs sm:text-sm text-[#f5f5f0a0] leading-relaxed font-light">
-                Rigoroso critério de seleção para a raiz de beterraba e castanhas de baru de produtores parceiros.
-              </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-[#ff3e78]">
-              <CheckCircle className="w-4 h-4" />
-              <span>Rastreabilidade Botânica</span>
-            </div>
-          </div>
 
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#14070a] border border-[#ffffff15] flex flex-col justify-between shadow-lg">
-            <div>
-              <div className="flex items-center gap-1 text-[#ff3e78] mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#ff3e78]" />
-                ))}
+            {/* Content Column */}
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+              
+              <p className="text-base sm:text-lg lg:text-xl text-[#f5f3f0] font-light leading-relaxed mb-6">
+                Confiamos tanto no nosso produto que se você não tiver o resultado que espera no tempo de <strong>(60 dias)</strong>, você pode pedir seu dinheiro de volta.
+              </p>
+
+              {/* Callout Risco Zero */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#1d0710]/90 border border-[#ff3e78]/40 mb-8 w-full shadow-inner">
+                <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#ff3e78] leading-relaxed flex items-center justify-center lg:justify-start gap-2">
+                  <ShieldCheck className="w-4 h-4 shrink-0 text-[#ff3e78]" />
+                  <span>SEM RISCO PARA VOCÊ! VOCÊ TERÁ RESULTADOS DE UMA VEZ POR TODAS! RISCO ZERO!</span>
+                </p>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">
-                Fórmula 100% Plant-Based
-              </h3>
-              <p className="text-xs sm:text-sm text-[#f5f5f0a0] leading-relaxed font-light">
-                Totalmente livre de lactose, derivados lácteos ou insumos sintéticos para garantir leveza no consumo.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-[#ff3e78]">
-              <CheckCircle className="w-4 h-4" />
-              <span>Zero Insumos Animais</span>
-            </div>
-          </div>
 
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#14070a] border border-[#ffffff15] flex flex-col justify-between shadow-lg">
-            <div>
-              <div className="flex items-center gap-1 text-[#ff3e78] mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#ff3e78]" />
-                ))}
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">
-                Envio Seguro & Rastreado
-              </h3>
-              <p className="text-xs sm:text-sm text-[#f5f5f0a0] leading-relaxed font-light">
-                Embalagens reforçadas que protegem a integridade do pote do nosso centro de distribuição até a sua casa.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-[#ff3e78]">
-              <CheckCircle className="w-4 h-4" />
-              <span>Logística Nacional</span>
-            </div>
-          </div>
+              {/* CTA Button */}
+              <button
+                onClick={handleCtaClick}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-[#801438] hover:bg-[#991944] text-white text-xs sm:text-sm font-bold tracking-[0.14em] uppercase transition-all duration-300 shadow-[0_8px_30px_rgba(128,20,56,0.6)] hover:shadow-[0_12px_40px_rgba(153,25,68,0.8)] active:scale-98 cursor-pointer group"
+                id="satisfacao-garantida-cta"
+              >
+                <Sparkles className="w-4 h-4 text-white/90 group-hover:scale-110 transition-transform" />
+                <span>QUERO POWER NATURE AGORA</span>
+                <ArrowRight className="w-4 h-4 text-white/90 group-hover:translate-x-1 transition-transform" />
+              </button>
 
-        </div>
+            </div>
 
-        {/* Prepared Reviews Placeholder Box as required by PRD Section 21 & 34 */}
-        <div className="p-8 rounded-3xl bg-[#14070a] border border-dashed border-[#8b1a3e]/50 text-center max-w-2xl mx-auto shadow-md">
-          <div className="w-12 h-12 rounded-2xl bg-[#1a080c] border border-[#8b1a3e] flex items-center justify-center text-[#ff3e78] mx-auto mb-4">
-            <MessageSquare className="w-5 h-5" />
-          </div>
-          <h4 className="text-base font-bold text-white mb-1">
-            Espaço de Avaliações Verificadas
-          </h4>
-          <p className="text-xs text-[#f5f5f0a0] leading-relaxed max-w-lg mx-auto font-light">
-            Área estruturada para a exibição de depoimentos e fotos de clientes verificados após a realização de seus primeiros pedidos.
-          </p>
-          <div className="mt-4 inline-flex items-center gap-1 text-[11px] text-[#ff3e78] font-medium">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Transparência total nas avaliações dos consumidores</span>
           </div>
         </div>
 

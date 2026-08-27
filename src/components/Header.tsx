@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import { trackEvent } from '../utils/analytics';
 import { brandConfig } from '../data/brand';
 
@@ -15,7 +15,6 @@ export const Header: React.FC<HeaderProps> = ({
   onExploreProducts
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -32,37 +31,6 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavAction = (targetId: string, routeTarget: string = '/') => {
-    setMobileMenuOpen(false);
-
-    if (currentRoute !== routeTarget && onNavigate) {
-      onNavigate(routeTarget);
-      setTimeout(() => {
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-      return;
-    }
-
-    const element = document.getElementById(targetId);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
   const handleHomeClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (currentRoute !== '/' && onNavigate) {
@@ -76,7 +44,10 @@ export const Header: React.FC<HeaderProps> = ({
     if (onExploreProducts) {
       onExploreProducts();
     } else {
-      handleNavAction('produtos');
+      const el = document.getElementById('produtos');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -114,156 +85,18 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-medium text-[#b5adb0]">
-          <button
-            onClick={() => handleNavAction('hero-section', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-inicio"
-          >
-            Início
-          </button>
-          <button
-            onClick={() => handleNavAction('produtos', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-produtos"
-          >
-            Produtos
-          </button>
-          <button
-            onClick={() => handleNavAction('beneficios-raiz-vital', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-beneficios"
-          >
-            Benefícios
-          </button>
-          <button
-            onClick={() => handleNavAction('nossa-essencia', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-essencia"
-          >
-            Nossa Essência
-          </button>
-          <button
-            onClick={() => handleNavAction('ingredientes-marca', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-ingredientes"
-          >
-            Ingredientes
-          </button>
-          <button
-            onClick={() => handleNavAction('para-quem', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-para-quem"
-          >
-            Para Quem
-          </button>
-          <button
-            onClick={() => handleNavAction('faq', '/')}
-            className="hover:text-white transition-colors cursor-pointer"
-            id="nav-link-faq"
-          >
-            FAQ
-          </button>
-        </nav>
-
-        {/* Desktop CTA Action */}
-        <div className="hidden md:flex items-center">
+        {/* CTA Action */}
+        <div className="flex items-center">
           <button
             onClick={triggerExploreProducts}
-            className="text-[#c02652] hover:text-[#e02b5e] text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer flex items-center gap-2 group py-1"
+            className="text-[#c02652] hover:text-[#e02b5e] text-xs sm:text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer flex items-center gap-1.5 sm:gap-2 group py-1 px-2.5 sm:px-3 rounded-full hover:bg-white/5"
             id="header-cta-btn"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#c02652] group-hover:scale-110 transition-transform" />
-            <span>NOSSOS PRODUTOS</span>
-          </button>
-        </div>
-
-        {/* Mobile Hamburger & Quick CTA */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={triggerExploreProducts}
-            className="text-[#c02652] text-[11px] font-bold uppercase tracking-wider px-2 py-1 flex items-center gap-1.5"
-            id="header-mobile-buy-btn"
-          >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Produtos</span>
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#f5f5f0] hover:bg-white/10 transition-colors"
-            aria-label="Abrir Menu"
-            id="hamburger-btn"
-          >
-            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c02652] group-hover:scale-110 transition-transform" />
+            <span>PRODUTOS</span>
           </button>
         </div>
       </div>
-
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0d0407]/95 backdrop-blur-xl border border-white/10 mx-3 mt-2 rounded-2xl px-6 py-6 shadow-2xl animate-in slide-in-from-top duration-200 pointer-events-auto">
-          <div className="flex flex-col gap-3.5 text-xs font-medium uppercase tracking-wider text-[#f5f5f0c0]">
-            <button
-              onClick={() => handleNavAction('hero-section', '/')}
-              className="text-left py-2 hover:text-white border-b border-white/5"
-            >
-              Início
-            </button>
-            <button
-              onClick={() => handleNavAction('produtos', '/')}
-              className="text-left py-2 hover:text-white border-b border-white/5 text-[#e02b5e] font-bold"
-            >
-              Catálogo de Produtos
-            </button>
-            <button
-              onClick={() => handleNavAction('beneficios-raiz-vital', '/')}
-              className="text-left py-2 hover:text-white border-b border-white/5"
-            >
-              Benefícios & Objetivos
-            </button>
-            <button
-              onClick={() => handleNavAction('nossa-essencia', '/')}
-              className="text-left py-2 hover:text-white border-b border-white/5"
-            >
-              Nossa Essência
-            </button>
-            <button
-              onClick={() => handleNavAction('ingredientes-marca', '/')}
-              className="text-left py-2 hover:text-white border-b border-white/5"
-            >
-              Ingredientes Botânicos
-            </button>
-            <button
-              onClick={() => handleNavAction('para-quem', '/')}
-              className="text-left py-2 hover:text-white border-b border-white/5"
-            >
-              Para Quem É
-            </button>
-            <button
-              onClick={() => handleNavAction('faq', '/')}
-              className="text-left py-2 hover:text-white"
-            >
-              Perguntas Frequentes
-            </button>
-            
-            <div className="pt-3 flex flex-col gap-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  triggerExploreProducts();
-                }}
-                className="w-full py-3.5 rounded-full bg-[#8b1a3e] hover:bg-[#a6214c] text-xs font-bold uppercase tracking-widest text-white shadow-lg flex items-center justify-center gap-2"
-              >
-                <Sparkles className="w-4 h-4" />
-                Conheça Nossos Produtos
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
