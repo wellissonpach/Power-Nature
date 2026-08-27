@@ -30,20 +30,24 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
     const t2 = setTimeout(() => setHeadlineStep((s) => Math.max(s, 2)), 650);
     const t3 = setTimeout(() => setHeadlineStep((s) => Math.max(s, 3)), 1100);
     const t4 = setTimeout(() => setHeadlineStep((s) => Math.max(s, 4)), 1600);
+    const t5 = setTimeout(() => setHeadlineStep((s) => Math.max(s, 5)), 2100);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
+      clearTimeout(t5);
     };
   }, []);
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
       const time = videoRef.current.currentTime;
-      if (time >= 1.6) {
-        setHeadlineStep(4);
+      if (time >= 2.1) {
+        setHeadlineStep(5);
+      } else if (time >= 1.6) {
+        setHeadlineStep((s) => Math.max(s, 4));
       } else if (time >= 1.1) {
         setHeadlineStep((s) => Math.max(s, 3));
       } else if (time >= 0.65) {
@@ -56,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
 
   const handleVideoEnded = () => {
     setVideoEnded(true);
-    setHeadlineStep(4);
+    setHeadlineStep(5);
     if (videoRef.current) {
       videoRef.current.pause();
     }
@@ -66,6 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
   const isLine2Visible = headlineStep >= 2;
   const isLine3Visible = headlineStep >= 3;
   const isLine4Visible = headlineStep >= 4;
+  const isButtonVisible = headlineStep >= 5;
 
   return (
     <section
@@ -75,7 +80,6 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
       {/* Desktop Background Image (Hidden on Mobile) */}
       <picture className="absolute inset-0 w-full h-full pointer-events-none z-0 transform-gpu hidden md:block">
         <source type="image/webp" srcSet="/background-desktop.webp" />
-        <source srcSet="/backgound%20desktop.png" />
         <img
           src="/background-desktop.webp"
           alt="Power Nature Hero Background"
@@ -118,8 +122,8 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
           
           {/* Left Column: Typography & Conversion Action */}
           <div className="lg:col-span-7 xl:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left z-20">
-            {/* Editorial Headline with progressive fast reveal */}
-            <h1 className="font-serif-hero text-[28px] sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[62px] leading-[1.1] tracking-[-0.01em] text-[#f5f3f0] font-normal drop-shadow-md uppercase">
+            {/* Impact Headline with progressive fast reveal */}
+            <h1 className="font-bebas text-[40px] sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[82px] leading-[0.94] tracking-[0.03em] text-[#f5f3f0] font-normal drop-shadow-md uppercase">
               <span
                 className={`inline-block transition-all duration-500 ease-out ${
                   isLine1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -129,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
               </span> <br />
 
               <span
-                className={`inline-block text-[#c02652] italic font-serif-hero transition-all duration-500 ease-out ${
+                className={`inline-block text-[#c02652] transition-all duration-500 ease-out ${
                   isLine2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
               >
@@ -141,7 +145,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
                   isLine3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
               >
-                PARA <span className="text-[#c02652] font-medium tracking-wide">TRANSFORMAR</span>
+                PARA <span className="text-[#c02652]">TRANSFORMAR</span>
               </span> <br />
 
               <span
@@ -154,10 +158,16 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
             </h1>
 
             {/* Espaço no mobile calibrado para o botão assentar perfeitamente na base do pote */}
-            <div className="h-[345px] sm:h-[385px] lg:hidden w-full" />
+            <div className="h-[405px] sm:h-[445px] lg:hidden w-full" />
 
-            {/* CTA Button - Centralizado no mobile e descido pontualmente */}
-            <div className="w-full flex justify-center lg:justify-start mt-6 sm:mt-8 lg:mt-16">
+            {/* CTA Button - Centralizado no mobile, descido pontualmente e com entrada gradual suave */}
+            <div
+              className={`w-full flex justify-center lg:justify-start mt-8 sm:mt-10 lg:mt-24 transition-all duration-700 ease-out ${
+                isButtonVisible
+                  ? 'opacity-100 translate-y-0 pointer-events-auto'
+                  : 'opacity-0 translate-y-3 pointer-events-none'
+              }`}
+            >
               <button
                 onClick={handleBuy}
                 className="w-full max-w-[290px] sm:max-w-xs sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-[#801438] hover:bg-[#991944] text-white text-xs sm:text-sm font-bold tracking-[0.14em] uppercase transition-all duration-300 shadow-[0_8px_30px_rgba(128,20,56,0.6)] hover:shadow-[0_12px_40px_rgba(153,25,68,0.8)] active:scale-98 cursor-pointer group"

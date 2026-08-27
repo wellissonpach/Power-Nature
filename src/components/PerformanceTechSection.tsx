@@ -29,8 +29,8 @@ export const PerformanceTechSection: React.FC<PerformanceTechSectionProps> = () 
         {/* Main Statement Box - Glassmorphic Editorial Card */}
         <div className="relative rounded-3xl sm:rounded-[36px] bg-gradient-to-b from-[#19060f]/80 via-[#100307]/90 to-[#0c0205]/95 border border-[#801438]/40 p-6 sm:p-10 lg:p-14 shadow-[0_20px_60px_rgba(0,0,0,0.8)] backdrop-blur-md text-center">
           
-          <h2 className="font-serif-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] leading-[1.3] sm:leading-[1.35] lg:leading-[1.32] text-[#f5f3f0] uppercase tracking-wide font-normal drop-shadow-md">
-            NOVIDADE NO BRASIL, UMA TECNOLOGIA QUE UNE{' '}
+          <h2 className="font-serif-hero text-2xl sm:text-3xl md:text-4xl lg:text-[44px] xl:text-[50px] leading-[1.08] sm:leading-[1.12] lg:leading-[1.14] text-[#f5f3f0] uppercase tracking-wide font-normal drop-shadow-md">
+            NOVIDADE NO BRASIL, UMA INOVAÇÃO QUE UNE{' '}
             <span className="text-[#e02b5e] font-serif-hero italic">
               FÓRMULAS NATURAIS
             </span>{' '}
@@ -49,43 +49,43 @@ export const PerformanceTechSection: React.FC<PerformanceTechSectionProps> = () 
           </h2>
 
           {/* 3 Core Impact Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-[#801438]/30">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-[#801438]/30">
             
             {/* Pillar 1 */}
-            <div className="flex flex-col items-center p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#801438]/40 transition-colors">
-              <div className="w-10 h-10 rounded-full bg-[#801438]/20 border border-[#801438]/50 flex items-center justify-center mb-3 text-[#ff3e78]">
-                <Zap className="w-5 h-5" />
+            <div className="flex flex-col items-center p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#801438]/40 transition-colors text-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#801438]/20 border border-[#801438]/50 flex items-center justify-center mb-4 text-[#ff3e78] shadow-[0_0_20px_rgba(255,62,120,0.2)]">
+                <Zap className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white mb-1.5">
+              <h3 className="text-xl sm:text-2xl md:text-[22px] font-bold uppercase tracking-wider text-white mb-2.5">
                 Performance Física
               </h3>
-              <p className="text-[11px] sm:text-xs text-[#b5adb0] leading-relaxed font-light">
+              <p className="text-sm sm:text-base text-[#cfc7cb] leading-relaxed font-normal">
                 Estímulo sustentado de energia, redução de fadiga e resistência prolongada.
               </p>
             </div>
 
             {/* Pillar 2 */}
-            <div className="flex flex-col items-center p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#801438]/40 transition-colors">
-              <div className="w-10 h-10 rounded-full bg-[#801438]/20 border border-[#801438]/50 flex items-center justify-center mb-3 text-[#ff3e78]">
-                <Heart className="w-5 h-5" />
+            <div className="flex flex-col items-center p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#801438]/40 transition-colors text-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#801438]/20 border border-[#801438]/50 flex items-center justify-center mb-4 text-[#ff3e78] shadow-[0_0_20px_rgba(255,62,120,0.2)]">
+                <Heart className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white mb-1.5">
+              <h3 className="text-xl sm:text-2xl md:text-[22px] font-bold uppercase tracking-wider text-white mb-2.5">
                 Vitalidade Íntima
               </h3>
-              <p className="text-[11px] sm:text-xs text-[#b5adb0] leading-relaxed font-light">
+              <p className="text-sm sm:text-base text-[#cfc7cb] leading-relaxed font-normal">
                 Otimização da circulação, vigor natural e suporte à disposição diária.
               </p>
             </div>
 
             {/* Pillar 3 */}
-            <div className="flex flex-col items-center p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#801438]/40 transition-colors">
-              <div className="w-10 h-10 rounded-full bg-[#801438]/20 border border-[#801438]/50 flex items-center justify-center mb-3 text-[#ff3e78]">
-                <Flame className="w-5 h-5" />
+            <div className="flex flex-col items-center p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#801438]/40 transition-colors text-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#801438]/20 border border-[#801438]/50 flex items-center justify-center mb-4 text-[#ff3e78] shadow-[0_0_20px_rgba(255,62,120,0.2)]">
+                <Flame className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white mb-1.5">
+              <h3 className="text-xl sm:text-2xl md:text-[22px] font-bold uppercase tracking-wider text-white mb-2.5">
                 Hipertrofia Muscular
               </h3>
-              <p className="text-[11px] sm:text-xs text-[#b5adb0] leading-relaxed font-light">
+              <p className="text-sm sm:text-base text-[#cfc7cb] leading-relaxed font-normal">
                 Aporte de nutrientes funcionais para síntese muscular e rápida recuperação.
               </p>
             </div>
