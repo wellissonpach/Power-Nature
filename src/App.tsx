@@ -166,7 +166,7 @@ export default function App() {
       />
 
       {/* Botão Flutuante Oficial do WhatsApp */}
-      <WhatsAppButton phoneNumber="556183266395" />
+      <WhatsAppButton phoneNumber="556198638990" />
 
     </div>
   );

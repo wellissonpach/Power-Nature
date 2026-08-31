@@ -64,7 +64,7 @@ export const BrandEssence: React.FC = () => {
 
             <div className="flex items-center gap-4 pt-4 border-t border-white/10 w-full">
               <img
-                src="/logo.png"
+                src="/NEW LOGO.png"
                 alt="Raiz Vital"
                 className="w-12 h-12 object-contain rounded-full shadow-[0_0_15px_rgba(224,43,94,0.3)]"
               />

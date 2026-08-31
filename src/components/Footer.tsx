@@ -44,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="md:col-span-4 flex flex-col items-start">
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="/logo.png"
+                src="/NEW LOGO.png"
                 alt="Raiz Vital Logo"
                 className="w-10 h-10 object-contain rounded-full shadow-[0_0_12px_rgba(255,62,120,0.35)]"
               />

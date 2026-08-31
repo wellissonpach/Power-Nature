@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
           id="brand-logo"
         >
           <img
-            src="/logo.png"
+            src="/NEW LOGO.png"
             alt="Raiz Vital Logo"
             className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-full shadow-[0_0_12px_rgba(224,43,94,0.35)] group-hover:scale-105 transition-transform"
           />

@@ -9,7 +9,7 @@ interface WhatsAppButtonProps {
 }
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
-  phoneNumber = '556183266395',
+  phoneNumber = '556198638990',
   defaultMessage = 'Olá! Gostaria de saber mais sobre o Power Nature.'
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +63,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
             <div className="flex items-center gap-3">
               <div className="relative">
                 <img
-                  src="/logo.png"
+                  src="/NEW LOGO.png"
                   alt="Raiz Vital"
                   className="w-9 h-9 rounded-full object-contain bg-white/5 border border-[#ff3e78]/40 shadow-sm"
                 />

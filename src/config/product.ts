@@ -22,7 +22,7 @@ export const productConfig: ProductConfig = {
   },
   instagramHandle: "@araizvital",
   instagramUrl: "https://instagram.com/araizvital",
-  whatsappContact: "+55 61 8326-6395",
+  whatsappContact: "+55 61 9863-8990",
   supportEmail: "contato@raizvital.com.br",
   highlights: [
     "300g • Conteúdo líquido",
