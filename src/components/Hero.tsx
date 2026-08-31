@@ -11,6 +11,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [headlineStep, setHeadlineStep] = useState<number>(0);
   const [videoEnded, setVideoEnded] = useState<boolean>(false);
+  const videoEndedRef = useRef<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState<boolean>(false);
 
@@ -50,7 +51,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
     // Permitir que o primeiro toque ou scroll na tela inicie o vídeo caso bloqueado pelo sistema
     const handleFirstInteraction = () => {
       const v = videoRef.current;
-      if (v && v.paused && !videoEnded) {
+      if (v && v.paused && !videoEndedRef.current) {
         v.play()
           .then(() => {
             setIsPlaying(true);
@@ -79,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
       clearTimeout(t4);
       clearTimeout(t5);
     };
-  }, [videoEnded]);
+  }, []);
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -99,6 +100,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
   };
 
   const handleVideoEnded = () => {
+    videoEndedRef.current = true;
     setVideoEnded(true);
     setHeadlineStep(5);
     if (videoRef.current) {
@@ -131,9 +133,9 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
 
       {/* Mobile Background Video (Executed on load/refresh, freezes at last frame) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden md:hidden">
-        {/* Poster / Fallback image layer */}
+        {/* Poster / Fallback image layer (exibe o primeiro frame antes do vídeo iniciar) */}
         <img
-          src={videoEnded || autoplayBlocked ? "/video-mobile-lastframe.webp" : "/video-mobile-poster.webp"}
+          src="/video-mobile-poster.webp"
           alt="Power Nature Mobile Background"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
@@ -155,8 +157,8 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
           }}
           onTimeUpdate={handleTimeUpdate}
           onEnded={handleVideoEnded}
-          className={`absolute inset-0 w-full h-full object-cover object-center transform-gpu transition-opacity duration-700 ${
-            isPlaying && !videoEnded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          className={`absolute inset-0 w-full h-full object-cover object-center transform-gpu transition-opacity duration-500 ${
+            isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         />
       </div>
