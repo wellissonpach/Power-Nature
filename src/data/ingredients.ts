@@ -12,7 +12,15 @@ export const ingredientsCatalogData: IngredientItem[] = [
       "Melhora Energia",
       "Antioxidante"
     ],
-    description: "Desidratada em processo controlado para preservar seus nutrientes naturais, a beterraba é uma das raízes mais valorizadas na nutrição funcional para quem mantém uma rotina ativa e dinâmica.",
+    description: `Por que a beterraba é uma potência contra a inflamação?
+
+O vegetal atua de forma direta e indireta no organismo por meio de três pilares principais:
+
+Betalaínas: São os pigmentos que dão a cor roxa intensa à beterraba. Elas atuam diretamente bloqueando marcadores inflamatórios e citocinas (como a proteína C reativa e o TNF-alpha), aliviando o estresse oxidativo das células.
+
+Nitratos Naturais: O organismo converte esses nitratos em óxido nítrico. Esse gás relaxa e dilata os vasos sanguíneos, melhorando o fluxo de sangue, reduzindo a pressão arterial e diminuindo a sobrecarga mecânica e inflamatória no sistema cardiovascular.
+
+Peptídeos Específicos: Cientistas austríacos isolaram moléculas da beterraba capazes de inibir enzimas associadas a doenças inflamatórias e neurodegenerativas.`,
     badge: "Raiz Funcional",
     image: "/beterraba-po.webp"
   },
@@ -28,7 +36,7 @@ export const ingredientsCatalogData: IngredientItem[] = [
       "Previne a anemia",
       "Combate o envelhecimento"
     ],
-    description: "Fruto autêntico da biodiversidade do Cerrado, a castanha de baru passa por torra e micronização cuidadosas para agregar sabor marcante e densidade nutricional autêntica aos produtos da Raiz Vital.",
+    description: "A castanha de baru é a castanha com maior quantidade de proteínas da natureza (cerca de 30%), mas também está entre as que tem menos gorduras (em torno de 37%). O baru traz uma combinação única de Zinco e vitamina E, que atua diretamente na saúde imunológica e regulação hormonal. Poderosa em antioxidantes: possui também alta capacidade ORAC (poder antioxidante), cerca de 7.460 a 21.000 µmol TE, mais que o dobro da média dentre as castanhas da natureza.",
     badge: "Bioma Brasileiro",
     image: "/castanha-de-baru.webp"
   }

@@ -67,7 +67,7 @@ export const IngredientsCatalog: React.FC = () => {
                     </p>
                   )}
 
-                  <p className="text-xs text-[#b5adb0] leading-relaxed font-light mb-4">
+                  <p className="text-xs text-[#b5adb0] leading-relaxed font-light mb-4 whitespace-pre-line">
                     {item.description}
                   </p>
                 </div>

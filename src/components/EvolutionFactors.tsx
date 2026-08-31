@@ -15,7 +15,7 @@ const mechanismsList = [
   },
   {
     title: "AUMENTO DE LIBIDO",
-    description: "Melhora disposição e desempenho sexual. Através da testosterona elevada e menor fadiga física. Te fazendo ter a maior performance sexual."
+    description: "Melhora a disposição e desempenho sexual. O óxido nítrico presente na beterraba, funciona como vasodilatador e o zinco presente na castanha de baru melhora a saúde dos vasos, além de promover o aumento de testosterona."
   },
   {
     title: "VASODILATAÇÃO",

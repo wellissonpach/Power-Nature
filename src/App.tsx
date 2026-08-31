@@ -8,6 +8,7 @@ import { Hero } from './components/Hero';
 import { PerformanceTechSection } from './components/PerformanceTechSection';
 import { VitalBenefits } from './components/VitalBenefits';
 import { EvolutionFactors } from './components/EvolutionFactors';
+import { ProductBannerShowcase } from './components/ProductBannerShowcase';
 import { BrandPillars } from './components/BrandPillars';
 import { IngredientsCatalog } from './components/IngredientsCatalog';
 import { Audience } from './components/Audience';
@@ -115,7 +116,10 @@ export default function App() {
         {/* 4. Nova Seção: Fatores Determinantes para Evolução & Como Atua */}
         <EvolutionFactors />
 
-        {/* 6. Nova Seção: Da Origem ao Produto (4 Pilares institucionais) */}
+        {/* 5. Destaque Visual Power Nature (Banner Imagem) */}
+        <ProductBannerShowcase />
+
+        {/* 6. Nova Seção: Fases de Efeitos com o Uso do Power Nature */}
         <BrandPillars />
 
         {/* 7. Nova Seção: Ingredientes da Nossa Essência (Acervo Botânico) */}

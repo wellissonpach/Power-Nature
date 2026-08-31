@@ -64,7 +64,7 @@ const audiencePoints: AudiencePoint[] = [
   },
   {
     id: 9,
-    text: "Não quer mais procrastinar e quer transformar os treinos e o corpo",
+    text: "Não quer mais procrastinar, mas, transformar os treinos e o corpo.",
     icon: Target
   },
   {
