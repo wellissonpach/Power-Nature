@@ -22,7 +22,9 @@ export type AnalyticsEventName =
   | 'scroll_50'
   | 'scroll_90'
   | 'open_nutrition_modal'
-  | 'select_pack';
+  | 'select_pack'
+  | 'open_whatsapp_modal'
+  | 'click_whatsapp_send';
 
 export function trackEvent(eventName: AnalyticsEventName, params: Record<string, unknown> = {}) {
   // Push to dataLayer if available

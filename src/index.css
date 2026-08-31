@@ -20,3 +20,12 @@ h1, h2, h3 {
   font-family: "Bebas Neue", "Barlow Condensed", sans-serif;
   letter-spacing: 0.02em;
 }
+
+/* Ocultar botão de play nativo do WebKit/Safari no iOS em vídeos de fundo */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+}

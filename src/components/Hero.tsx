@@ -11,6 +11,8 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [headlineStep, setHeadlineStep] = useState<number>(0);
   const [videoEnded, setVideoEnded] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState<boolean>(false);
 
   const handleBuy = () => {
     trackEvent('click_buy', { source: 'hero' });
@@ -18,12 +20,48 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
   };
 
   useEffect(() => {
-    // Reset video on mount
+    // Configurar vídeo para compatibilidade máxima com WebKit / iOS Safari
     const video = videoRef.current;
     if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', 'true');
       video.currentTime = 0;
-      video.play().catch(() => {});
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            setAutoplayBlocked(false);
+          })
+          .catch((err) => {
+            // Em Modo de Pouca Energia (Low Power Mode) do iOS, o Safari bloqueia autoplay
+            console.log('Mobile video autoplay blocked (e.g. Low Power Mode):', err);
+            setAutoplayBlocked(true);
+            setIsPlaying(false);
+          });
+      }
     }
+
+    // Permitir que o primeiro toque ou scroll na tela inicie o vídeo caso bloqueado pelo sistema
+    const handleFirstInteraction = () => {
+      const v = videoRef.current;
+      if (v && v.paused && !videoEnded) {
+        v.play()
+          .then(() => {
+            setIsPlaying(true);
+            setAutoplayBlocked(false);
+          })
+          .catch(() => {});
+      }
+    };
+
+    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
 
     // Faster progressive reveal timer sequence (starts completely hidden at 0ms)
     const t1 = setTimeout(() => setHeadlineStep((s) => Math.max(s, 1)), 250);
@@ -33,13 +71,15 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
     const t5 = setTimeout(() => setHeadlineStep((s) => Math.max(s, 5)), 2100);
 
     return () => {
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
       clearTimeout(t5);
     };
-  }, []);
+  }, [videoEnded]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -93,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden md:hidden">
         {/* Poster / Fallback image layer */}
         <img
-          src={videoEnded ? "/video-mobile-lastframe.webp" : "/video-mobile-poster.webp"}
+          src={videoEnded || autoplayBlocked ? "/video-mobile-lastframe.webp" : "/video-mobile-poster.webp"}
           alt="Power Nature Mobile Background"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
@@ -101,14 +141,23 @@ export const Hero: React.FC<HeroProps> = ({ onBuyClick, onExploreClick }) => {
         <video
           ref={videoRef}
           src="/video-mobile-optimized.mp4"
-          poster="/video-mobile-poster.webp"
           playsInline
           muted
           autoPlay
           preload="auto"
+          onPlay={() => {
+            setIsPlaying(true);
+            setAutoplayBlocked(false);
+          }}
+          onPlaying={() => {
+            setIsPlaying(true);
+            setAutoplayBlocked(false);
+          }}
           onTimeUpdate={handleTimeUpdate}
           onEnded={handleVideoEnded}
-          className="absolute inset-0 w-full h-full object-cover object-center transform-gpu"
+          className={`absolute inset-0 w-full h-full object-cover object-center transform-gpu transition-opacity duration-700 ${
+            isPlaying && !videoEnded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
         />
       </div>
 
