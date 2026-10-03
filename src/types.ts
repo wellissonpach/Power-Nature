@@ -63,6 +63,43 @@ export interface ProductItem {
   nutritionTable?: NutritionItem[];
 }
 
+export interface CapsuleProductBenefit {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface CapsuleProduct {
+  id: string;
+  slug: string;
+  name: string;
+  fullName: string;
+  subtitle: string;
+  tagline: string;
+  category: string;
+  badge: string;
+  badgeColor?: string;
+  capsulesCount: string;
+  dosage: string;
+  spec: string;
+  price: number;
+  priceFormatted: string;
+  originalPriceFormatted?: string;
+  mercadoLivreUrl: string;
+  image: string;
+  shortDescription: string;
+  fullDescription: string;
+  keyIngredients: string[];
+  mainBenefit: string;
+  benefits: CapsuleProductBenefit[];
+  highlights: string[];
+  suggestedUse: string;
+  storageInfo: string;
+  ingredientsText: string;
+  allergenWarning: string;
+  nutritionTable?: NutritionItem[];
+}
+
 export interface IngredientItem {
   id: string;
   name: string;

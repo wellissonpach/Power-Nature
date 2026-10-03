@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PerformanceTechSection } from './components/PerformanceTechSection';
 import { VitalBenefits } from './components/VitalBenefits';
@@ -13,6 +14,7 @@ import { BrandPillars } from './components/BrandPillars';
 import { IngredientsCatalog } from './components/IngredientsCatalog';
 import { Audience } from './components/Audience';
 import { FeaturedProduct } from './components/FeaturedProduct';
+import { CapsuleProductPage } from './components/CapsuleProductPage';
 import { TrustProof } from './components/TrustProof';
 import { FAQ } from './components/FAQ';
 import { InstagramSection } from './components/InstagramSection';
@@ -22,21 +24,45 @@ import { NutritionModal } from './components/NutritionModal';
 import { CheckoutModal } from './components/CheckoutModal';
 import { LegalModals } from './components/LegalModals';
 import { productConfig } from './config/product';
-import { ProductPack } from './types';
+import { ProductPack, CapsuleProduct } from './types';
+import { capsuleProducts, getCapsuleProductBySlug } from './data/capsules';
 import { trackEvent } from './utils/analytics';
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState<string>('/');
+  const [selectedCapsuleProduct, setSelectedCapsuleProduct] = useState<CapsuleProduct | null>(null);
   const [isNutritionOpen, setIsNutritionOpen] = useState(false);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
   const [selectedPackForCheckout, setSelectedPackForCheckout] = useState<ProductPack>(productConfig.packs[1]);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
 
+  // Sync with URL Hash (#produto-slug)
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash.startsWith('produto-')) {
+        const slug = hash.replace('produto-', '');
+        const found = getCapsuleProductBySlug(slug);
+        if (found) {
+          setSelectedCapsuleProduct(found);
+        }
+      } else if (!hash) {
+        setSelectedCapsuleProduct(null);
+      }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   // Track page view & scroll depth
   useEffect(() => {
-    const pageTitle = 'Raiz Vital | Produtos Naturais e Nutrição Funcional';
+    const pageTitle = selectedCapsuleProduct 
+      ? `${selectedCapsuleProduct.name} em Cápsulas | Raiz Vital`
+      : 'Raiz Vital | Produtos Naturais e Nutrição Funcional';
     document.title = pageTitle;
-    trackEvent('page_view', { page_title: pageTitle, path: '/' });
+    trackEvent('page_view', { page_title: pageTitle, path: selectedCapsuleProduct ? `/produtos/${selectedCapsuleProduct.slug}` : '/' });
 
     let fired50 = false;
     let fired90 = false;
@@ -65,10 +91,27 @@ export default function App() {
 
     window.addEventListener('scroll', handleScrollTracking, { passive: true });
     return () => window.removeEventListener('scroll', handleScrollTracking);
-  }, []);
+  }, [selectedCapsuleProduct]);
 
   const navigateTo = (route: string) => {
     setCurrentRoute(route);
+  };
+
+  const handleSelectCapsuleProduct = (product: CapsuleProduct) => {
+    setSelectedCapsuleProduct(product);
+    window.location.hash = `produto-${product.slug}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToHome = () => {
+    setSelectedCapsuleProduct(null);
+    if (window.location.hash) {
+      history.pushState('', document.title, window.location.pathname + window.location.search);
+    }
+    setTimeout(() => {
+      const el = document.getElementById('destaque-produto');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   const handleDirectBuy = () => {
@@ -86,63 +129,93 @@ export default function App() {
   };
 
   const handleExploreClick = () => {
-    const el = document.getElementById('produtos');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (selectedCapsuleProduct) {
+      setSelectedCapsuleProduct(null);
+      if (window.location.hash) {
+        history.pushState('', document.title, window.location.pathname + window.location.search);
+      }
     }
+    setTimeout(() => {
+      const el = document.getElementById('destaque-produto');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
     <div className="min-h-screen bg-[#0a0505] text-[#f5f5f0] relative overflow-x-hidden font-sans selection:bg-[#8b1a3e] selection:text-white">
       
-      <main>
-        {/* 1. Hero Section (Preservada visualmente como destaque do Power Nature) */}
-        <Hero 
-          onBuyClick={handleHeroBuyClick} 
-          onExploreClick={handleExploreClick} 
+      {/* Header Fixo Global */}
+      <Header 
+        onNavigate={(route) => {
+          if (selectedCapsuleProduct) {
+            handleBackToHome();
+          } else {
+            navigateTo(route);
+          }
+        }}
+        currentRoute={selectedCapsuleProduct ? `/produtos/${selectedCapsuleProduct.slug}` : currentRoute}
+        onExploreProducts={handleExploreClick}
+      />
+
+      {selectedCapsuleProduct ? (
+        <CapsuleProductPage 
+          product={selectedCapsuleProduct}
+          onBack={handleBackToHome}
+          onSelectProduct={handleSelectCapsuleProduct}
         />
+      ) : (
+        <main>
+          {/* 1. Hero Section (Destaque do Power Nature) */}
+          <Hero 
+            onBuyClick={handleHeroBuyClick} 
+            onExploreClick={handleExploreClick} 
+          />
 
-        {/* 2. Nova Seção: Inovação & Tecnologia de Performance */}
-        <PerformanceTechSection />
+          {/* 2. Inovação & Tecnologia de Performance */}
+          <PerformanceTechSection />
 
-        {/* 3. Nova Seção: Benefícios dos Produtos Raiz Vital (Respostas para dores e desejos do público) */}
-        <VitalBenefits 
-          onExploreProduct={() => {
-            const el = document.getElementById('destaque-produto');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-        />
+          {/* 3. Benefícios dos Produtos Raiz Vital */}
+          <VitalBenefits 
+            onExploreProduct={() => {
+              const el = document.getElementById('destaque-produto');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          />
 
-        {/* 4. Nova Seção: Fatores Determinantes para Evolução & Como Atua */}
-        <EvolutionFactors />
+          {/* 4. Fatores Determinantes para Evolução & Como Atua */}
+          <EvolutionFactors />
 
-        {/* 5. Destaque Visual Power Nature (Banner Imagem) */}
-        <ProductBannerShowcase />
+          {/* 5. Destaque Visual Power Nature (Banner Imagem) */}
+          <ProductBannerShowcase />
 
-        {/* 6. Nova Seção: Fases de Efeitos com o Uso do Power Nature */}
-        <BrandPillars />
+          {/* 6. Fases de Efeitos com o Uso do Power Nature */}
+          <BrandPillars />
 
-        {/* 7. Nova Seção: Ingredientes da Nossa Essência (Acervo Botânico) */}
-        <IngredientsCatalog />
+          {/* 7. Ingredientes da Nossa Essência (Acervo Botânico) */}
+          <IngredientsCatalog />
 
-        {/* 8. Para Quem É (Público & Momentos de Consumo) */}
-        <Audience />
+          {/* 8. Para Quem É (Público & Momentos de Consumo) */}
+          <Audience />
 
-        {/* 9. Satisfação Garantida & Confiança */}
-        <TrustProof onBuyClick={handleDirectBuy} />
+          {/* 9. Satisfação Garantida & Confiança */}
+          <TrustProof onBuyClick={handleDirectBuy} />
 
-        {/* 10. Nova Seção: Produto em Destaque (Power Nature) */}
-        <FeaturedProduct 
-          onBuyClick={handleDirectBuy}
-          onOpenNutrition={() => setIsNutritionOpen(true)}
-        />
+          {/* 10. Seção: CONHEÇA NOSSOS PRODUTOS EM CÁPSULAS */}
+          <FeaturedProduct 
+            onSelectProduct={handleSelectCapsuleProduct}
+            onBuyClick={handleDirectBuy}
+            onOpenNutrition={() => setIsNutritionOpen(true)}
+          />
 
-        {/* 13. FAQ */}
-        <FAQ />
+          {/* 13. FAQ */}
+          <FAQ />
 
-        {/* 14. Instagram (@araizvital) */}
-        <InstagramSection />
-      </main>
+          {/* 14. Instagram (@araizvital) */}
+          <InstagramSection />
+        </main>
+      )}
 
       {/* 16. Rodapé Oficial Raiz Vital */}
       <Footer 
